@@ -90,14 +90,18 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
 .endereco-linha {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   color: #f5f5f5;
   letter-spacing: 1px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 0 1rem;
+  line-height: 1.4;
+  white-space: normal; /* Permite quebra de linha */
+  word-wrap: break-word; /* Quebra palavras longas se necessário */
 }
 
 .map-container {
@@ -112,7 +116,8 @@
 /* Ajustes responsivos */
 @media (max-width: 768px) {
   .endereco-linha {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    padding: 0 0.8rem;
   }
 
   .map-container {
@@ -122,7 +127,14 @@
 
 @media (max-width: 480px) {
   .endereco-linha {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    padding: 0 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .endereco {
+    gap: 0.3rem;
+    margin-bottom: 1rem;
   }
 
   .map-container {
@@ -131,10 +143,82 @@
   }
 }
 
-h1 {
+/* Estilo comum para títulos das páginas secundárias */
+.content h1 {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: clamp(1rem, 3vh, 2rem);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+/* Traço verde-oliva sob os títulos */
+.content h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #808000,
+    transparent
+  );
+  transition: width 0.3s ease;
+}
+
+/* Tamanho específico para Confirme sua Presença */
+.confirmacao-content h1::after {
+  width: 380px;
+}
+
+.confirmacao-content h1:hover::after {
+  width: 420px;
+}
+
+/* Efeito hover nos outros títulos */
+.content h1:hover::after {
+  width: 320px;
+}
+
+/* Ajuste responsivo do traço */
+@media (max-width: 768px) {
+  .content h1::after {
+    width: 220px;
+  }
+  
+  .content h1:hover::after {
+    width: 260px;
+  }
+
+  .confirmacao-content h1::after {
+    width: 300px;
+  }
+
+  .confirmacao-content h1:hover::after {
+    width: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1::after {
+    width: 180px;
+  }
+  
+  .content h1:hover::after {
+    width: 220px;
+  }
+
+  .confirmacao-content h1::after {
+    width: 240px;
+  }
+
+  .confirmacao-content h1:hover::after {
+    width: 280px;
+  }
 }
 
 p {

@@ -15,7 +15,7 @@ function Home() {
           </h2>
           <div className="date-divider">
             <span className="line"></span>
-            <span className="wedding-date">30.08.2025 - 15h30</span>
+            <span className="wedding-date">30<span>.</span>08<span>.</span>2025 <span>-</span> 15<span>:</span>30</span>
             <span className="line"></span>
           </div>
         </div>

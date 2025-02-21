@@ -80,7 +80,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(245, 245, 245, 0.8),
+    #808000, /* Verde-oliva */
     transparent
   );
 }
@@ -93,6 +93,11 @@
   letter-spacing: 0.05em;
   white-space: nowrap;
   padding: 0 clamp(0.5rem, 1vw, 1rem);
+}
+
+/* Estilizando os caracteres especiais da data */
+.wedding-date span {
+  color: #808000; /* Verde-oliva */
 }
 
 h1 {

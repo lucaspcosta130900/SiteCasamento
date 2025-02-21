@@ -1,0 +1,35 @@
+.sobre-content {
+  opacity: 1;
+}
+
+.sobre-content h1 {
+  opacity: 0;
+  animation: fadeInSobre 0.5s ease forwards;
+}
+
+.sobre-text {
+  opacity: 0;
+  animation: slideUpSobre 0.8s ease forwards 0.8s;
+  margin: 1rem auto;
+  max-width: 800px;
+}
+
+@keyframes fadeInSobre {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpSobre {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
