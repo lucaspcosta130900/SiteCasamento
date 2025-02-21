@@ -5,6 +5,18 @@ html, body {
   position: relative;
 }
 
+/* Prevenir scroll na Home */
+html, body.no-scroll-home {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Permitir scroll nas outras páginas */
+body:not(.no-scroll-home) {
+  overflow-y: auto;
+}
+
 .page-container {
   min-height: 100vh;
   display: flex;

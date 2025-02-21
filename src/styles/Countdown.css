@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 .countdown {
   position: fixed;
@@ -11,9 +11,8 @@
 }
 
 .countdown-text {
-  font-family: 'Caveat', cursive;
   color: #f5f5f5;
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   display: inline-block;
@@ -25,19 +24,30 @@
 }
 
 .countdown-text span {
-  font-weight: 700;
-  color: #808000; /* Verde-oliva */
+  font-weight: 600;
+  color: #808000;
   margin: 0 0.2rem;
   display: inline-block;
   min-width: 1.5em;
   transition: all 0.3s ease;
 }
 
-/* Responsividade melhorada */
+/* Ajustes responsivos */
 @media (max-width: 768px) {
   .countdown-text {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    padding: 0.6rem 1rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-text {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .countdown-text {
+    font-size: 1.2rem;
   }
 }
 
@@ -61,27 +71,5 @@
 
   .countdown-text {
     font-size: clamp(1.1rem, 2vw, 1.4rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .countdown {
-    bottom: 10px;
-    padding: 0.5rem;
-  }
-  
-  .countdown-text {
-    font-size: 1.1rem;
-    padding: 0.5rem 0.8rem;
-    width: 95%;
-  }
-}
-
-/* Para telas muito pequenas, quebramos em duas linhas se necessário */
-@media (max-width: 360px) {
-  .countdown-text {
-    white-space: normal;
-    font-size: 1.1rem;
-    padding: 0.4rem 0.8rem;
   }
 } 
