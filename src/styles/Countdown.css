@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
+.countdown {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  text-align: center;
+  padding: 1rem;
+}
+
+.countdown-text {
+  font-family: 'Caveat', cursive;
+  color: #f5f5f5;
+  font-size: 1.6rem;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.countdown-text span {
+  font-weight: 700;
+  color: #808000; /* Verde-oliva */
+  margin: 0 0.2rem;
+  display: inline-block;
+  min-width: 1.5em;
+  transition: all 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .countdown-text {
+    font-size: 1.4rem;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-text {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .countdown {
+    padding: 0.8rem;
+  }
+}
+
+/* Para telas muito pequenas, quebramos em duas linhas se necessário */
+@media (max-width: 360px) {
+  .countdown-text {
+    white-space: normal;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+} 

@@ -1,11 +1,13 @@
 import React from 'react';
 import '../styles/Pages.css';
 import '../styles/Home.css';
+import Countdown from '../components/Countdown';
 
 function Home() {
   return (
     <div className="page-container home-container">
       <div className="background-overlay"></div>
+      <Countdown />
       <div className="content home-content">
         <div className="names-container">
           <h2 className="couple-names">
