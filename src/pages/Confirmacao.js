@@ -164,19 +164,15 @@ const selectStyles = {
 
 function Confirmacao() {
   const [selectedGuest, setSelectedGuest] = useState(null);
-  const [showGrupoQuestion, setShowGrupoQuestion] = useState(false);
   const [confirmarGrupo, setConfirmarGrupo] = useState(null);
   const [membrosFamilia, setMembrosFamilia] = useState([]);
   const [confirmacoes, setConfirmacoes] = useState({});
 
   useEffect(() => {
     if (selectedGuest) {
-      setShowGrupoQuestion(true);
       setConfirmarGrupo(null);
       setMembrosFamilia([]);
       setConfirmacoes({});
-    } else {
-      setShowGrupoQuestion(false);
     }
   }, [selectedGuest]);
 
