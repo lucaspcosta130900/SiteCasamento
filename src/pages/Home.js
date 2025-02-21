@@ -19,7 +19,7 @@ function Home() {
             <span className="line"></span>
           </div>
         </div>
-        <h1 className="home-title">Bem-vindos ao nosso casamento!</h1>
+        <h1 className="home-title">Bem-vindos ao site do nosso casamento!</h1>
         <p className="home-text">Estamos muito felizes em compartilhar este momento especial com você.</p>
       </div>
     </div>

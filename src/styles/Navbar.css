@@ -1,6 +1,6 @@
 .navbar {
   background-color: transparent;
-  padding: 1rem;
+  padding: 1.2rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -40,21 +40,23 @@
   backdrop-filter: blur(4px);
 }
 
-/* Menu hamburguer */
+/* Menu hamburguer ajustado */
 .menu-toggle {
   display: none;
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.8rem;
   position: absolute;
-  right: 1rem;
-  top: 0.5rem;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
 }
 
 .hamburger {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background-color: white;
   position: relative;
@@ -65,35 +67,21 @@
 .hamburger::after {
   content: '';
   position: absolute;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background-color: white;
   transition: all 0.3s ease;
 }
 
 .hamburger::before {
-  top: -8px;
+  top: -6px;
 }
 
 .hamburger::after {
-  bottom: -8px;
+  bottom: -6px;
 }
 
-.hamburger.open {
-  background-color: transparent;
-}
-
-.hamburger.open::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-
-.hamburger.open::after {
-  transform: rotate(-45deg);
-  bottom: 0;
-}
-
-/* Estilos responsivos */
+/* Estilos responsivos melhorados */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -104,13 +92,15 @@
     flex-direction: column;
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    right: 1.5rem;
+    width: 220px;
+    background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(4px);
-    padding: 1rem 0;
-    text-align: center;
-    gap: 0;
+    padding: 0.5rem 0;
+    margin: 0;
+    z-index: 1000;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .navbar ul.open {
@@ -123,12 +113,62 @@
 
   .navbar ul li a {
     display: block;
-    padding: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    text-align: left;
     width: 100%;
-    border-radius: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
   }
 
   .navbar ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animação do hamburguer */
+  .hamburger.open {
+    background-color: transparent;
+  }
+
+  .hamburger.open::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .hamburger.open::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    right: 1rem;
+  }
+
+  .navbar ul {
+    right: 1rem;
+    width: 200px;
+  }
+
+  .navbar ul li a {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Ajuste para orientação paisagem em dispositivos móveis */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navbar ul {
+    padding: 3.5rem 0 1rem;
+  }
+
+  .navbar ul li a {
+    padding: 0.6rem 1.5rem;
   }
 } 
