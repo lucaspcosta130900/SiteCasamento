@@ -129,4 +129,45 @@
     height: 300px;
     border-width: 1px;
   }
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Ajustes responsivos gerais */
+@media (max-width: 768px) {
+  .content {
+    padding: 15px;
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 10px;
+    margin-top: 50px;
+  }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 360px) {
+  .content {
+    width: 95%;
+  }
+}
+
+/* Ajuste para orientação paisagem */
+@media (max-height: 500px) and (orientation: landscape) {
+  .content {
+    margin-top: 70px;
+  }
 } 

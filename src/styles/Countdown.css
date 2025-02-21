@@ -14,15 +14,14 @@
   font-family: 'Caveat', cursive;
   color: #f5f5f5;
   font-size: 1.6rem;
-  line-height: 1;
+  line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  white-space: nowrap;
   display: inline-block;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.5rem;
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(4px);
   border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 90%;
 }
 
 .countdown-text span {
@@ -34,22 +33,25 @@
   transition: all 0.3s ease;
 }
 
-/* Responsividade */
+/* Responsividade melhorada */
 @media (max-width: 768px) {
   .countdown-text {
-    font-size: 1.4rem;
-    padding: 0.6rem 1.5rem;
+    font-size: 1.3rem;
+    padding: 0.6rem 1rem;
+    line-height: 1.4;
   }
 }
 
 @media (max-width: 480px) {
-  .countdown-text {
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+  .countdown {
+    bottom: 10px;
+    padding: 0.5rem;
   }
   
-  .countdown {
-    padding: 0.8rem;
+  .countdown-text {
+    font-size: 1.1rem;
+    padding: 0.5rem 0.8rem;
+    width: 95%;
   }
 }
 

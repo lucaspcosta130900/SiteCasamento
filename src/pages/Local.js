@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../styles/Pages.css';
+import '../styles/SharedAnimations.css';
 
 function Local() {
   const mapRef = useRef(null);
@@ -36,9 +37,9 @@ function Local() {
   return (
     <div className="page-container">
       <div className="background-overlay"></div>
-      <div className="content">
+      <div className="content fade-in-fast">
         <h1>Local do Evento</h1>
-        <div className="local-info">
+        <div className="local-info fade-in-content">
           <p className="endereco">
             <span className="endereco-linha">Alameda Verona, 56 - Pituba</span>
             <span className="endereco-linha">Salvador - Bahia • CEP: 41830-465</span>
