@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../styles/Pages.css';
 import '../styles/Local.css';
+import casaVerona from '../assets/images/casa-verona.jpg';
 
 function Local() {
   const mapRef = useRef(null);
@@ -39,12 +40,22 @@ function Local() {
       <div className="background-overlay"></div>
       <div className="content local-content">
         <h1>Local do Evento</h1>
+        <div className="endereco">
+          <span className="endereco-linha">Alameda Verona, 56 - Pituba</span>
+          <span className="endereco-linha">Salvador - Bahia • CEP: 41830-465</span>
+        </div>
         <div className="local-info">
-          <div className="endereco">
-            <span className="endereco-linha">Alameda Verona, 56 - Pituba</span>
-            <span className="endereco-linha">Salvador - Bahia • CEP: 41830-465</span>
+          <div className="map-section">
+            <div className="map-container" ref={mapRef}></div>
           </div>
-          <div className="map-container" ref={mapRef}></div>
+          <div className="vertical-line"></div>
+          <div className="image-section">
+            <img 
+              src={casaVerona} 
+              alt="Casa Verona" 
+              className="venue-image"
+            />
+          </div>
         </div>
       </div>
     </div>
