@@ -18,6 +18,8 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .confirmation-form {
