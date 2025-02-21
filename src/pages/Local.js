@@ -10,11 +10,11 @@ function Local() {
       lng: -38.46001922529908
     };
 
-    // Inicializa o mapa com mais zoom e tipo satélite
+    // Inicializa o mapa com mais zoom e tipo padrão
     const map = new window.google.maps.Map(mapRef.current, {
       center: localEvento,
       zoom: 18, // Aumentei o zoom
-      mapTypeId: 'satellite', // Define o tipo como satélite por padrão
+      mapTypeId: 'roadmap', // Alterado de 'satellite' para 'roadmap'
       styles: [
         {
           "featureType": "all",
@@ -24,20 +24,12 @@ function Local() {
       ]
     });
 
-    // Adiciona um marcador personalizado no local do evento
+    // Usando o marcador padrão do Google Maps
     new window.google.maps.Marker({
       position: localEvento,
       map: map,
       title: 'Local do Evento',
-      animation: window.google.maps.Animation.DROP,
-      icon: {
-        path: window.google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: '#f0d3d3',
-        fillOpacity: 1,
-        strokeColor: '#ffffff',
-        strokeWeight: 2
-      }
+      animation: window.google.maps.Animation.DROP
     });
   }, []);
 
