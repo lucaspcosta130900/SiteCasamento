@@ -13,7 +13,7 @@
 .countdown-text {
   font-family: 'Caveat', cursive;
   color: #f5f5f5;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   display: inline-block;
@@ -36,9 +36,31 @@
 /* Responsividade melhorada */
 @media (max-width: 768px) {
   .countdown-text {
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     padding: 0.6rem 1rem;
-    line-height: 1.4;
+  }
+}
+
+/* Ajuste para telas menores em altura */
+@media (max-height: 700px) {
+  .countdown {
+    bottom: 10px;
+  }
+
+  .countdown-text {
+    padding: 0.5rem 1rem;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+  }
+}
+
+/* Ajuste específico para notebooks */
+@media (min-height: 600px) and (max-height: 800px) {
+  .countdown {
+    bottom: 15px;
+  }
+
+  .countdown-text {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
   }
 }
 
