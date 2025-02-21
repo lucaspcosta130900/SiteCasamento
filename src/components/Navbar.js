@@ -28,6 +28,7 @@ function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <button className="menu-toggle" onClick={toggleMenu}>
+        <span className="hamburger-text">Menu</span>
         <span className={`hamburger ${isMenuOpen ? 'open' : ''}`}></span>
       </button>
       <ul className={isMenuOpen ? 'open' : ''}>

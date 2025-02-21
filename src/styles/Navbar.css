@@ -41,7 +41,7 @@
 
 /* Menu hamburguer ajustado */
 .menu-toggle {
-  display: none;
+  display: none; /* Esconde por padrão */
   background: transparent;
   border: none;
   cursor: pointer;
@@ -51,10 +51,13 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 1001;
+  color: white;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hamburger {
-  display: block;
+  display: none; /* Esconde por padrão */
   width: 22px;
   height: 2px;
   background-color: white;
@@ -80,10 +83,25 @@
   bottom: -6px;
 }
 
+.hamburger-text {
+  display: none; /* Esconde por padrão */
+  font-size: 1rem;
+  font-weight: 400;
+  margin-right: 0.5rem;
+}
+
 /* Estilos responsivos melhorados */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
+    display: flex; /* Mostra apenas no mobile */
+  }
+
+  .hamburger {
+    display: block; /* Mostra apenas no mobile */
+  }
+
+  .hamburger-text {
+    display: block; /* Mostra apenas no mobile */
   }
 
   .navbar ul {
@@ -158,6 +176,10 @@
   .navbar ul li a {
     padding: 0.7rem 1.2rem;
     font-size: 0.95rem;
+  }
+
+  .hamburger-text {
+    font-size: 0.9rem;
   }
 }
 
