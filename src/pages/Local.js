@@ -7,6 +7,7 @@ function Local() {
   const mapRef = useRef(null);
   
   useEffect(() => {
+    document.body.classList.add('local-page-body');
     const localEvento = {
       lat: -13.001187455157009,
       lng: -38.46001922529908
@@ -33,15 +34,19 @@ function Local() {
       title: 'Local do Evento',
       animation: window.google.maps.Animation.DROP
     });
+
+    return () => {
+      document.body.classList.remove('local-page-body');
+    };
   }, []);
 
   return (
-    <div className="page-container">
+    <div className="page-container local-page">
       <div className="background-overlay"></div>
       <div className="content local-content">
         <h1>Local do Evento</h1>
         <div className="endereco">
-          <span className="endereco-linha">Alameda Verona, 56 - Pituba</span>
+          <span className="endereco-linha">Casa Verona - Alameda Verona, 56 - Pituba</span>
           <span className="endereco-linha">Salvador - Bahia • CEP: 41830-465</span>
         </div>
         <div className="local-info">

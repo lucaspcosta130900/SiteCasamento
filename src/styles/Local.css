@@ -79,32 +79,61 @@
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
+  .page-container.local-page {
+    padding-top: 60px;
+  }
+
   .local-content {
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    padding-top: 0.5rem;
+  }
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .content h1 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .endereco {
+    margin-bottom: 0.5rem;
   }
 
   .local-info {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .map-section, .image-section {
     width: 100%;
-    max-width: 500px;
   }
 
   .map-container, .venue-image {
     width: 100%;
-    height: 300px;
+    height: 180px;
   }
 
   .vertical-line {
     width: 280px;
     height: 1px;
-    margin: 0.5rem auto;
+    margin: 0.2rem auto;
     background: linear-gradient(
       to right,
       transparent,
@@ -112,28 +141,53 @@
       transparent
     );
   }
-
-  .endereco {
-    margin-bottom: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .local-content {
-    padding: 0 15px;
+  .page-container.local-page {
+    padding-top: 50px;
   }
 
-  .map-section, .image-section {
-    max-width: 400px;
+  .local-content {
+    height: calc(100vh - 50px);
+    top: 50px;
+    padding: 0 15px;
+    padding-top: 0.3rem;
   }
 
   .map-container, .venue-image {
-    height: 250px;
+    height: 160px;
   }
 
   .vertical-line {
     width: 220px;
-    margin: 0.3rem auto;
+    margin: 0.15rem auto;
+  }
+
+  .endereco {
+    margin-bottom: 0.4rem;
+  }
+
+  .endereco-linha {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+  }
+}
+
+@media (max-height: 600px) {
+  .local-content {
+    padding-top: 0.5rem;
+  }
+
+  .map-container, .venue-image {
+    height: 140px;
+  }
+
+  .endereco {
+    margin-bottom: 0.3rem;
+  }
+
+  .vertical-line {
+    margin: 0.1rem auto;
   }
 }
 
