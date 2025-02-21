@@ -1,5 +1,5 @@
    // src/App.js
-   import React, { useEffect } from 'react';
+   import React from 'react';
    import { HashRouter as Router } from 'react-router-dom';
    import AppRoutes from './AppRoutes';
    import './App.css';
