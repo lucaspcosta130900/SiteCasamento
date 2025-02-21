@@ -1,3 +1,10 @@
+/* Prevenir scroll horizontal e parte branca */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 .page-container {
   min-height: 100vh;
   display: flex;
@@ -10,6 +17,8 @@
   background-position: center;
   color: white;
   padding-top: 80px; /* Espaço para a navbar */
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+  width: 100%;
 }
 
 .content {

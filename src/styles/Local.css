@@ -1,11 +1,12 @@
 /* Animação específica para a página Local */
 .local-content h1 {
   opacity: 0;
-  animation: fadeInLocal 0.5s ease forwards;
+  animation: fadeInLocal 1s ease forwards 0.3s;
 }
 
 .local-content {
   opacity: 1;
+  animation: pageTransition 0.3s ease-in-out;
 }
 
 .endereco {
@@ -15,7 +16,7 @@
   flex-direction: column;
   gap: 0.5rem;
   opacity: 0;
-  animation: slideUpLocal 0.8s ease forwards 0.8s;
+  animation: slideUpLocal 0.8s ease forwards 1.2s;
 }
 
 .endereco-linha {
@@ -35,7 +36,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.2);
   opacity: 0;
-  animation: slideUpLocal 0.8s ease forwards 1.5s;
+  animation: slideUpLocal 0.8s ease forwards 1.8s;
 }
 
 @keyframes fadeInLocal {
@@ -55,5 +56,16 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 } 

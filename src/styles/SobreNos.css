@@ -1,15 +1,16 @@
 .sobre-content {
   opacity: 1;
+  animation: pageTransition 0.3s ease-in-out;
 }
 
 .sobre-content h1 {
   opacity: 0;
-  animation: fadeInSobre 0.5s ease forwards;
+  animation: fadeInSobre 1s ease forwards 0.3s;
 }
 
 .sobre-text {
   opacity: 0;
-  animation: slideUpSobre 0.8s ease forwards 0.8s;
+  animation: slideUpSobre 0.8s ease forwards 1.2s;
   margin: 1rem auto;
   max-width: 800px;
 }
@@ -31,5 +32,16 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 } 
