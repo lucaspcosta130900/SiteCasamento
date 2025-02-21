@@ -6,9 +6,11 @@
      return (
        <div className="App">
          <header className="App-header">
-           <h1>Bem-vindos ao nosso casamento!</h1>
-           <p>Estamos muito felizes em compartilhar este momento especial com você.</p>
-           <img src="sua-imagem.jpg" alt="Imagem dos noivos" />
+           <div className="background-overlay"></div>
+           <div className="content">
+             <h1>Bem-vindos ao nosso casamento!</h1>
+             <p>Estamos muito felizes em compartilhar este momento especial com você.</p>
+           </div>
          </header>
        </div>
      );
