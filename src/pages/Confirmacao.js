@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import '../styles/Pages.css';
 import '../styles/Confirmacao.css';
+import { useNavigate } from 'react-router-dom';
 
 // Definição dos grupos familiares
 const gruposFamiliares = {
@@ -163,6 +164,7 @@ const selectStyles = {
 };
 
 function Confirmacao() {
+  const navigate = useNavigate();
   const [selectedGuest, setSelectedGuest] = useState(null);
   const [confirmarGrupo, setConfirmarGrupo] = useState(null);
   const [membrosFamilia, setMembrosFamilia] = useState([]);
@@ -214,17 +216,21 @@ function Confirmacao() {
     return membrosFamilia.every(membro => confirmacoes[membro] !== '');
   };
 
+  const botaoDesabilitado = () => {
+    if (!selectedGuest) return true; // Desabilita se nenhum nome selecionado
+    if (confirmarGrupo === null) return true; // Desabilita se não respondeu sobre grupo
+    if (confirmarGrupo === false) return false; // Habilita se respondeu não
+    return !todasConfirmacoesPreenchidas(); // Desabilita se faltam confirmações
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (confirmarGrupo && !todasConfirmacoesPreenchidas()) {
       alert('Por favor, confirme a presença de todos os membros do grupo familiar.');
       return;
     }
-    // Lógica de envio do formulário
-    console.log({
-      convidadoPrincipal: selectedGuest,
-      confirmacoesGrupo: confirmarGrupo ? confirmacoes : null
-    });
+    // Navega para a página de presentes após confirmação
+    navigate('/presentes');
   };
 
   return (
@@ -312,9 +318,9 @@ function Confirmacao() {
           <button 
             type="submit" 
             className="submit-button"
-            disabled={confirmarGrupo && !todasConfirmacoesPreenchidas()}
+            disabled={botaoDesabilitado()}
           >
-            Confirmar Presença
+            Avançar para Lista de Presentes
           </button>
         </form>
       </div>
