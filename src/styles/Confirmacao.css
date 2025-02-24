@@ -264,9 +264,9 @@ html, body {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   text-align: left;
   width: 100%;
 }
@@ -276,10 +276,11 @@ html, body {
   width: 100%;
   padding: 0.8rem;
   border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   font-size: 1rem;
   transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .form-group textarea {
@@ -298,9 +299,10 @@ html, body {
   margin-top: 1.5rem;
   width: 100%;
   padding: 0.8rem;
-  background-color: #808000;
+  background: rgba(128, 128, 0, 0.8);
+  backdrop-filter: blur(5px);
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   font-size: 1.1rem;
   cursor: pointer;
@@ -308,11 +310,12 @@ html, body {
 }
 
 .submit-button:hover:not(:disabled) {
-  background-color: #666600;
+  background: rgba(128, 128, 0, 0.9);
 }
 
 .submit-button:disabled {
-  background-color: #666;
+  background: rgba(102, 102, 102, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: not-allowed;
 }
 
@@ -331,17 +334,20 @@ html, body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   flex: 1;
   min-width: auto;
   white-space: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .radio-group input[type="radio"] {
   width: 20px;
   height: 20px;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Lista de membros */
@@ -349,7 +355,7 @@ html, body {
   margin-top: 1rem;
   background: rgba(0, 0, 0, 0.85);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   overflow: hidden;
   text-align: center;
 }
@@ -358,11 +364,13 @@ html, body {
   display: block;
   padding: 0.8rem;
   background: rgba(0, 0, 0, 0.85);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 0.9rem;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .membros-lista {
@@ -387,7 +395,8 @@ html, body {
 
 .nome-membro {
   font-size: 1rem;
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .opcoes-confirmacao {
@@ -402,8 +411,9 @@ html, body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Estilização dos radio buttons */
@@ -412,12 +422,12 @@ input[type="radio"] {
   -webkit-appearance: none;
   width: 12px;
   height: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   margin: 0;
   position: relative;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 input[type="radio"]:checked {
@@ -432,12 +442,13 @@ input[type="radio"]:hover {
 /* Ajuste para o texto dos labels dos radio buttons */
 .radio-group label,
 .opcoes-confirmacao label {
-  color: #f5f5f5;
+  color: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
   transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .radio-group label:hover,
@@ -457,4 +468,69 @@ input[type="radio"]:hover {
 .confirmacao-form::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
+}
+
+/* Ajuste nos backgrounds e cores */
+.confirmacao-form,
+.membros-grupo,
+.membros-grupo > label {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Ajuste nos inputs */
+.form-group input,
+.form-group textarea,
+.react-select__control {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ajuste no select */
+.react-select__menu {
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.react-select__option {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.react-select__option--is-focused {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.react-select__option--is-selected {
+  background: rgba(128, 128, 0, 0.5) !important;
+}
+
+/* Ajuste nos radio buttons */
+input[type="radio"] {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+input[type="radio"]:checked {
+  background: #808000;
+  border-color: #808000;
+}
+
+/* Ajuste no botão */
+.submit-button {
+  background: rgba(128, 128, 0, 0.8);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.submit-button:hover:not(:disabled) {
+  background: rgba(128, 128, 0, 0.9);
+}
+
+.submit-button:disabled {
+  background: rgba(102, 102, 102, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 } 

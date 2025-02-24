@@ -1,12 +1,76 @@
+/* Container principal */
+.sobre-container {
+  width: 90%; /* Alterado para porcentagem */
+  max-width: 550px;
+  margin: 0 auto; /* Simplificado para auto */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 4rem; /* Espaço extra no final */
+  position: absolute; /* Mudado para absolute */
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+}
+
+/* Container do conteúdo com background escuro */
 .sobre-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Garantir que padding não afete largura */
+}
+
+/* Texto com scroll invisível */
+.sobre-text {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  max-height: calc(100vh - 300px); /* Reduzido para evitar corte */
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  text-align: justify; /* Alinhamento justificado */
+  padding-bottom: 2rem; /* Espaço extra no final do texto */
+}
+
+.sobre-text::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ajuste para imagens */
+.sobre-image {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .sobre-container {
+    width: 95%; /* Aumentado ligeiramente no mobile */
+    padding: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .sobre-content {
+    padding: 1rem;
+  }
+
+  .sobre-text {
+    max-height: calc(100vh - 250px);
+    line-height: 1.5;
+    font-size: 0.95rem; /* Texto um pouco menor no mobile */
+  }
 }
 
 .sobre-content h1 {
@@ -16,39 +80,15 @@
   text-align: center;
 }
 
-.sobre-text {
-  opacity: 0;
-  animation: slideUpSobre 0.8s ease forwards 1.2s;
-  margin: 0 auto;
-  text-align: justify;
-  line-height: 1.8;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #f5f5f5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.02em;
-}
-
-/* Responsividade */
+/* Ajuste para telas médias */
 @media (max-width: 768px) {
-  .sobre-content {
-    padding: 1.5rem;
-    margin: 1rem;
-    border-radius: 12px;
+  .sobre-container {
+    width: 95%;
+    padding: 1rem;
   }
 
   .sobre-text {
     line-height: 1.6;
-  }
-}
-
-@media (max-width: 480px) {
-  .sobre-content {
-    padding: 1rem;
-    margin: 0.5rem;
-  }
-
-  .sobre-text {
-    font-size: 0.95rem;
   }
 }
 
@@ -59,16 +99,5 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes slideUpSobre {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 } 
