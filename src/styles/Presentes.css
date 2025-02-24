@@ -289,12 +289,13 @@
 @media (max-width: 767px) {
   .presentes-content {
     padding: 1rem 0.5rem;
-    padding-bottom: 200px;
+    padding-bottom: 250px;
   }
 
   .presentes-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
+    padding-bottom: 2rem;
   }
 
   .carrinho-flutuante {
@@ -304,26 +305,78 @@
     right: 0;
     top: auto;
     width: 100%;
-    max-height: 60vh;
+    max-height: 45vh;
     border-radius: 12px 12px 0 0;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .presentes-selecionados {
-    max-height: 30vh;
+    max-height: 25vh;
+    overflow-y: auto;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .presente-card {
-    margin-bottom: 1rem;
+  .presente-selecionado-item {
+    padding: 0.4rem 0;
+    gap: 0.5rem;
+    align-items: center;
   }
 
-  .presente-imagem {
-    height: 200px;
+  .presente-selecionado-nome {
+    font-size: 0.85rem;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  .presente-info h3 {
+  .presente-selecionado-preco {
+    font-size: 0.85rem;
+    min-width: 80px;
+    padding-right: 0.5rem;
+  }
+
+  .remover-presente {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    position: relative;
+    right: 0;
+  }
+
+  .subtotal {
+    margin-top: auto;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .btn-presentear {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
     font-size: 1rem;
-    min-height: 40px;
+  }
+
+  .presentes-selecionados::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .presentes-selecionados::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .presentes-selecionados::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
   }
 }
 
@@ -331,7 +384,7 @@
 @media (max-width: 375px) {
   .presentes-content {
     padding: 0.5rem;
-    padding-bottom: 180px;
+    padding-bottom: 220px;
   }
 
   .presentes-grid {
@@ -344,6 +397,7 @@
 
   .carrinho-flutuante {
     padding: 0.8rem;
+    max-height: 40vh;
   }
 
   .presente-selecionado-nome {
@@ -356,20 +410,24 @@
   }
 
   .remover-presente {
-    width: 18px;
-    height: 18px;
-    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+  }
+
+  .subtotal {
+    font-size: 1rem;
   }
 }
 
 /* Ajustes para altura pequena */
 @media (max-height: 600px) {
   .carrinho-flutuante {
-    max-height: 70vh;
+    max-height: 50vh;
   }
 
   .presentes-selecionados {
-    max-height: 40vh;
+    max-height: 30vh;
   }
 }
 
