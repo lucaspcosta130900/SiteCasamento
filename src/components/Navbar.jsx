@@ -33,8 +33,9 @@ function Navbar() {
       </button>
       <ul className={isMenuOpen ? 'open' : ''}>
         <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-        <li><Link to="/sobre" onClick={() => setIsMenuOpen(false)}>Sobre Nós</Link></li>
+        <li><Link to="/sobre-nos" onClick={() => setIsMenuOpen(false)}>Sobre Nós</Link></li>
         <li><Link to="/confirmacao" onClick={() => setIsMenuOpen(false)}>Confirme sua Presença</Link></li>
+        <li><Link to="/presentes" onClick={() => setIsMenuOpen(false)}>Lista de Presentes</Link></li>
         <li><Link to="/local" onClick={() => setIsMenuOpen(false)}>Local do Evento</Link></li>
       </ul>
     </nav>
