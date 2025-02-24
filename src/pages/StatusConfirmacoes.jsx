@@ -25,13 +25,21 @@ function StatusConfirmacoes() {
     return acc;
   }, {});
 
-  const handleDesfazer = (nome, grupo, tipo) => {
-    removerConfirmacao(nome);
-    setToast({
-      message: `Confirmação de ${nome} removida com sucesso!`,
-      type: 'success'
-    });
-    forceUpdate({});
+  const handleDesfazer = async (nome, grupo, tipo) => {
+    try {
+      await removerConfirmacao(nome);
+      setToast({
+        message: `Confirmação de ${nome} removida com sucesso!`,
+        type: 'success'
+      });
+      forceUpdate({});
+    } catch (error) {
+      console.error('Erro ao remover confirmação:', error);
+      setToast({
+        message: 'Erro ao remover confirmação. Por favor, tente novamente.',
+        type: 'error'
+      });
+    }
   };
 
   return (

@@ -245,82 +245,90 @@ function Confirmacao() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!selectedGuest) {
-      setToast({
-        message: 'Por favor, selecione um convidado.',
-        type: 'error'
-      });
-      return;
-    }
+    try {
+      if (!selectedGuest) {
+        setToast({
+          message: 'Por favor, selecione um convidado.',
+          type: 'error'
+        });
+        return;
+      }
 
-    if (confirmarPresenca === null) {
-      setToast({
-        message: 'Por favor, confirme sua presença.',
-        type: 'error'
-      });
-      return;
-    }
+      if (confirmarPresenca === null) {
+        setToast({
+          message: 'Por favor, confirme sua presença.',
+          type: 'error'
+        });
+        return;
+      }
 
-    if (confirmarPresenca === true && confirmarGrupo === null) {
-      setToast({
-        message: 'Por favor, escolha se deseja confirmar outros membros do grupo.',
-        type: 'error'
-      });
-      return;
-    }
+      if (confirmarPresenca === true && confirmarGrupo === null) {
+        setToast({
+          message: 'Por favor, escolha se deseja confirmar outros membros do grupo.',
+          type: 'error'
+        });
+        return;
+      }
 
-    if (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro])) {
-      setToast({
-        message: 'Por favor, confirme a presença de todos os membros do grupo.',
-        type: 'error'
-      });
-      return;
-    }
+      if (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro])) {
+        setToast({
+          message: 'Por favor, confirme a presença de todos os membros do grupo.',
+          type: 'error'
+        });
+        return;
+      }
 
-    // Confirma o convidado principal
-    if (confirmarPresenca) {
-      adicionarConfirmacao({
-        nome: selectedGuest.label,
-        grupo: selectedGuest.grupo
-      });
-    } else {
-      adicionarNaoConfirmacao({
-        nome: selectedGuest.label,
-        grupo: selectedGuest.grupo
-      });
-    }
+      // Confirma o convidado principal
+      if (confirmarPresenca) {
+        await adicionarConfirmacao({
+          nome: selectedGuest.label,
+          grupo: selectedGuest.grupo
+        });
+      } else {
+        await adicionarNaoConfirmacao({
+          nome: selectedGuest.label,
+          grupo: selectedGuest.grupo
+        });
+      }
 
-    // Confirma os outros membros se necessário
-    if (confirmarGrupo) {
-      membrosFamilia.forEach(membro => {
-        if (confirmacoesGrupo[membro] === 'confirmar') {
-          adicionarConfirmacao({
-            nome: membro,
-            grupo: selectedGuest.grupo
-          });
-        } else {
-          adicionarNaoConfirmacao({
-            nome: membro,
-            grupo: selectedGuest.grupo
-          });
+      // Confirma os outros membros se necessário
+      if (confirmarGrupo) {
+        for (const membro of membrosFamilia) {
+          if (confirmacoesGrupo[membro] === 'confirmar') {
+            await adicionarConfirmacao({
+              nome: membro,
+              grupo: selectedGuest.grupo
+            });
+          } else {
+            await adicionarNaoConfirmacao({
+              nome: membro,
+              grupo: selectedGuest.grupo
+            });
+          }
         }
+      }
+
+      setToast({
+        message: 'Presença(s) confirmada(s) com sucesso!',
+        type: 'success'
+      });
+      
+      // Limpa o formulário
+      setSelectedGuest(null);
+      setConfirmarPresenca(null);
+      setConfirmarGrupo(null);
+      setMembrosFamilia([]);
+      setConfirmacoesGrupo({});
+    } catch (error) {
+      console.error('Erro ao salvar confirmações:', error);
+      setToast({
+        message: 'Erro ao salvar confirmações. Por favor, tente novamente.',
+        type: 'error'
       });
     }
-
-    setToast({
-      message: 'Presença(s) confirmada(s) com sucesso!',
-      type: 'success'
-    });
-    
-    // Limpa o formulário
-    setSelectedGuest(null);
-    setConfirmarPresenca(null);
-    setConfirmarGrupo(null);
-    setMembrosFamilia([]);
-    setConfirmacoesGrupo({});
   };
 
   return (
