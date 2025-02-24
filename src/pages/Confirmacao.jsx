@@ -3,6 +3,8 @@ import Select from 'react-select';
 import '../styles/Pages.css';
 import '../styles/Confirmacao.css';
 import { useNavigate } from 'react-router-dom';
+import { confirmacoes, adicionarConfirmacao, adicionarNaoConfirmacao } from '../data/confirmacoes';
+import Toast from '../components/Toast';
 
 // Definição dos grupos familiares
 const gruposFamiliares = {
@@ -138,99 +140,187 @@ const convidados = [
 
 // Estilo customizado para o react-select
 const selectStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: 'rgba(255, 255, 255, 0.9)',
+  control: (provided, state) => ({
+    ...provided,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    border: '2px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '8px',
-    borderColor: state.isFocused ? '#808000' : '#ccc',
-    boxShadow: state.isFocused ? '0 0 0 1px #808000' : 'none',
+    boxShadow: state.isFocused ? '0 0 0 2px rgba(128, 128, 0, 0.2)' : 'none',
     '&:hover': {
       borderColor: '#808000'
+    },
+    '@media (max-width: 480px)': {
+      minHeight: '45px',
+      fontSize: '14px'
     }
   }),
-  option: (base, state) => ({
-    ...base,
-    background: state.isSelected ? '#808000' : 
-                state.isFocused ? 'rgba(128, 128, 0, 0.1)' : 'white',
-    color: state.isSelected ? 'white' : 'black',
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(10px)',
+    '@media (max-width: 480px)': {
+      fontSize: '14px'
+    }
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? '#808000' : 
+                    state.isFocused ? 'rgba(128, 128, 0, 0.1)' : 'transparent',
+    color: state.isSelected ? 'white' : '#333',
     '&:active': {
-      background: '#808000'
+      backgroundColor: '#808000'
+    },
+    '@media (max-width: 480px)': {
+      padding: '8px 12px'
     }
   }),
-  placeholder: (base) => ({
-    ...base,
-    color: '#666'
+  placeholder: (provided) => ({
+    ...provided,
+    '@media (max-width: 480px)': {
+      fontSize: '14px'
+    }
   })
 };
 
 function Confirmacao() {
   const navigate = useNavigate();
   const [selectedGuest, setSelectedGuest] = useState(null);
+  const [confirmarPresenca, setConfirmarPresenca] = useState(null);
   const [confirmarGrupo, setConfirmarGrupo] = useState(null);
   const [membrosFamilia, setMembrosFamilia] = useState([]);
-  const [confirmacoes, setConfirmacoes] = useState({});
+  const [confirmacoesGrupo, setConfirmacoesGrupo] = useState({});
+  const [toast, setToast] = useState(null);
+
+  // Filtra convidados já confirmados
+  const convidadosDisponiveis = convidados.filter(convidado => {
+    const jaConfirmado = confirmacoes.confirmados.some(
+      c => c.nome === convidado.label
+    );
+    const jaNaoConfirmado = confirmacoes.naoConfirmados.some(
+      c => c.nome === convidado.label
+    );
+    return !jaConfirmado && !jaNaoConfirmado;
+  });
 
   useEffect(() => {
     if (selectedGuest) {
+      setConfirmarPresenca(null);
       setConfirmarGrupo(null);
       setMembrosFamilia([]);
-      setConfirmacoes({});
+      setConfirmacoesGrupo({});
     }
   }, [selectedGuest]);
 
   useEffect(() => {
+    if (confirmarPresenca === false) {
+      setConfirmarGrupo(null);
+      setMembrosFamilia([]);
+      setConfirmacoesGrupo({});
+    }
+  }, [confirmarPresenca]);
+
+  useEffect(() => {
     if (confirmarGrupo === true && selectedGuest) {
-      // Pega o grupo do convidado selecionado
       const grupoDoConvidado = selectedGuest.grupo;
-      
-      // Filtra apenas os convidados do mesmo grupo
-      const outrosConvidados = convidados
-        .filter(c => c.grupo === grupoDoConvidado && c.value !== selectedGuest.value)
+      // Filtra membros do grupo que ainda não confirmaram
+      const outrosConvidados = convidadosDisponiveis
+        .filter(c => 
+          c.grupo === grupoDoConvidado && 
+          c.value !== selectedGuest.value
+        )
         .map(c => c.label);
       
       setMembrosFamilia(outrosConvidados);
-      
-      const novasConfirmacoes = {
-        [selectedGuest.label]: 'confirmar',
-        ...outrosConvidados.reduce((acc, membro) => {
-          acc[membro] = '';
-          return acc;
-        }, {})
-      };
-      
-      setConfirmacoes(novasConfirmacoes);
+      setConfirmacoesGrupo({});
     } else {
       setMembrosFamilia([]);
-      setConfirmacoes({});
+      setConfirmacoesGrupo({});
     }
   }, [confirmarGrupo, selectedGuest]);
 
-  const handleConfirmacaoMembro = (membro, confirmacao) => {
-    setConfirmacoes(prev => ({
+  const handleConfirmacaoMembro = (membro, status) => {
+    setConfirmacoesGrupo(prev => ({
       ...prev,
-      [membro]: confirmacao
+      [membro]: status
     }));
-  };
-
-  const todasConfirmacoesPreenchidas = () => {
-    return membrosFamilia.every(membro => confirmacoes[membro] !== '');
-  };
-
-  const botaoDesabilitado = () => {
-    if (!selectedGuest) return true; // Desabilita se nenhum nome selecionado
-    if (confirmarGrupo === null) return true; // Desabilita se não respondeu sobre grupo
-    if (confirmarGrupo === false) return false; // Habilita se respondeu não
-    return !todasConfirmacoesPreenchidas(); // Desabilita se faltam confirmações
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (confirmarGrupo && !todasConfirmacoesPreenchidas()) {
-      alert('Por favor, confirme a presença de todos os membros do grupo familiar.');
+    
+    if (!selectedGuest) {
+      setToast({
+        message: 'Por favor, selecione um convidado.',
+        type: 'error'
+      });
       return;
     }
-    // Navega para a página de presentes após confirmação
-    navigate('/presentes');
+
+    if (confirmarPresenca === null) {
+      setToast({
+        message: 'Por favor, confirme sua presença.',
+        type: 'error'
+      });
+      return;
+    }
+
+    if (confirmarPresenca === true && confirmarGrupo === null) {
+      setToast({
+        message: 'Por favor, escolha se deseja confirmar outros membros do grupo.',
+        type: 'error'
+      });
+      return;
+    }
+
+    if (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro])) {
+      setToast({
+        message: 'Por favor, confirme a presença de todos os membros do grupo.',
+        type: 'error'
+      });
+      return;
+    }
+
+    // Confirma o convidado principal
+    if (confirmarPresenca) {
+      adicionarConfirmacao({
+        nome: selectedGuest.label,
+        grupo: selectedGuest.grupo
+      });
+    } else {
+      adicionarNaoConfirmacao({
+        nome: selectedGuest.label,
+        grupo: selectedGuest.grupo
+      });
+    }
+
+    // Confirma os outros membros se necessário
+    if (confirmarGrupo) {
+      membrosFamilia.forEach(membro => {
+        if (confirmacoesGrupo[membro] === 'confirmar') {
+          adicionarConfirmacao({
+            nome: membro,
+            grupo: selectedGuest.grupo
+          });
+        } else {
+          adicionarNaoConfirmacao({
+            nome: membro,
+            grupo: selectedGuest.grupo
+          });
+        }
+      });
+    }
+
+    setToast({
+      message: 'Presença(s) confirmada(s) com sucesso!',
+      type: 'success'
+    });
+    
+    // Limpa o formulário
+    setSelectedGuest(null);
+    setConfirmarPresenca(null);
+    setConfirmarGrupo(null);
+    setMembrosFamilia([]);
+    setConfirmacoesGrupo({});
   };
 
   return (
@@ -242,12 +332,12 @@ function Confirmacao() {
           <div className="form-group">
             <label>Nome do Convidado</label>
             <Select
-              options={convidados}
+              options={convidadosDisponiveis}
               value={selectedGuest}
               onChange={setSelectedGuest}
               styles={selectStyles}
               placeholder="Selecione seu nome"
-              noOptionsMessage={() => "Nome não encontrado"}
+              noOptionsMessage={() => "Nome não encontrado ou já confirmado"}
               isSearchable={true}
               className="react-select-container"
               classNamePrefix="react-select"
@@ -256,7 +346,43 @@ function Confirmacao() {
 
           {selectedGuest && (
             <div className="form-group">
-              <label>Você gostaria de confirmar outras pessoas do seu grupo familiar?</label>
+              <label>Você poderá comparecer ao casamento?</label>
+              <div className="radio-group">
+                <label>
+                  <input
+                    type="radio"
+                    name="confirmarPresenca"
+                    value="sim"
+                    checked={confirmarPresenca === true}
+                    onChange={() => {
+                      setConfirmarPresenca(true);
+                      setConfirmarGrupo(null);
+                    }}
+                  />
+                  Sim, confirmo minha presença
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="confirmarPresenca"
+                    value="nao"
+                    checked={confirmarPresenca === false}
+                    onChange={() => {
+                      setConfirmarPresenca(false);
+                      setConfirmarGrupo(null);
+                      setMembrosFamilia([]);
+                      setConfirmacoesGrupo({});
+                    }}
+                  />
+                  Não poderei comparecer
+                </label>
+              </div>
+            </div>
+          )}
+
+          {selectedGuest && confirmarPresenca !== null && (
+            <div className="form-group">
+              <label>Deseja confirmar a presença de outras pessoas do seu grupo familiar?</label>
               <div className="radio-group">
                 <label>
                   <input
@@ -294,7 +420,7 @@ function Confirmacao() {
                         type="radio"
                         name={`confirmacao-${membro}`}
                         value="confirmar"
-                        checked={confirmacoes[membro] === 'confirmar'}
+                        checked={confirmacoesGrupo[membro] === 'confirmar'}
                         onChange={() => handleConfirmacaoMembro(membro, 'confirmar')}
                       />
                       Confirmar
@@ -304,7 +430,7 @@ function Confirmacao() {
                         type="radio"
                         name={`confirmacao-${membro}`}
                         value="nao-confirmar"
-                        checked={confirmacoes[membro] === 'nao-confirmar'}
+                        checked={confirmacoesGrupo[membro] === 'nao-confirmar'}
                         onChange={() => handleConfirmacaoMembro(membro, 'nao-confirmar')}
                       />
                       Não Confirmar
@@ -318,11 +444,24 @@ function Confirmacao() {
           <button 
             type="submit" 
             className="submit-button"
-            disabled={botaoDesabilitado()}
+            disabled={
+              !selectedGuest || 
+              confirmarPresenca === null || 
+              (confirmarPresenca === true && confirmarGrupo === null) || 
+              (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro]))
+            }
           >
-            Avançar para Lista de Presentes
+            Confirmar
           </button>
         </form>
+
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
       </div>
     </div>
   );

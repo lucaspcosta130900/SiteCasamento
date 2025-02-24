@@ -5,6 +5,7 @@ import SobreNos from './pages/SobreNos';
 import Confirmacao from './pages/Confirmacao';
 import Local from './pages/Local';
 import Presentes from './pages/Presentes';
+import StatusConfirmacoes from './pages/StatusConfirmacoes';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/confirmacao" element={<Confirmacao />} />
           <Route path="/local" element={<Local />} />
           <Route path="/presentes" element={<Presentes />} />
+          <Route path="/status-confirmacoes" element={<StatusConfirmacoes />} />
         </Routes>
       </div>
     </Router>
