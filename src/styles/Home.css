@@ -188,9 +188,7 @@ p {
 }
 
 @media (max-width: 480px) {
-  .home-content {
-    margin-top: 10vh;
-  }
+
 }
 
 /* Ajustes para telas pequenas */
@@ -263,7 +261,6 @@ p {
 /* Ajustes para orientação paisagem em dispositivos móveis */
 @media (max-height: 500px) and (orientation: landscape) {
   .home-content {
-    margin-top: 12vh;
   }
 
   .home-container {
