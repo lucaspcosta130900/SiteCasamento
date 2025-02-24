@@ -21,6 +21,8 @@
   margin: 0 0 2rem 0;
   padding: 0;
   letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeInDown 1s ease forwards;
 }
 
 /* Esconde scrollbar para Chrome, Safari e Opera */
@@ -51,6 +53,9 @@
   cursor: pointer;
   position: relative;
   transition: none;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: calc(var(--card-index) * 0.1s);
 }
 
 .presente-card:hover {
@@ -125,12 +130,20 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  animation: slideInRight 0.5s ease forwards;
 }
 
 .carrinho-info {
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease forwards !important;
+}
+
+.carrinho-info p {
+  opacity: 1 !important;
+  animation: fadeIn 0.3s ease forwards !important;
 }
 
 .presentes-selecionados {
@@ -152,7 +165,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   transition: none;
-  opacity: 1;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
 }
 
 .presente-selecionado-item:last-child {
@@ -222,6 +236,8 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   width: 100%;
   box-sizing: border-box;
+  opacity: 0;
+  animation: fadeIn 0.2s ease forwards;
 }
 
 .btn-presentear {
@@ -234,6 +250,8 @@
   cursor: pointer;
   font-size: 1.1rem;
   transition: none;
+  opacity: 0;
+  animation: fadeIn 0.2s ease forwards;
 }
 
 .btn-presentear:hover:not(:disabled) {
@@ -581,26 +599,6 @@
   color: #808000;
 }
 
-/* Remover todas as animações e garantir visibilidade imediata */
-.presentes-content h1,
-.presentes-content h2,
-.presentes-content h3,
-.carrinho-info,
-.carrinho-info span,
-.presente-selecionado-item,
-.presente-selecionado-preco,
-.presente-selecionado-nome,
-.presente-preco,
-.subtotal,
-.carrinho-flutuante,
-.carrinho-flutuante * {
-  opacity: 1 !important;
-  transition: none !important;
-  animation: none !important;
-  transform: none !important;
-  visibility: visible !important;
-}
-
 /* Remover animações do contador */
 .carrinho-info span {
   display: inline-block;
@@ -611,32 +609,46 @@
   display: flex;
 }
 
-/* Remover todas as animações keyframe */
-@keyframes fadeIn {
-  from, to {
-    opacity: 1;
-    transform: none;
+/* Keyframes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-}
-
-@keyframes slideIn {
-  from, to {
+  to {
     opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes slideUp {
-  from, to {
-    opacity: 1;
-    transform: none;
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeInUp {
-  from, to {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -658,4 +670,28 @@
   .carrinho-flutuante {
     right: 2rem;
   }
+}
+
+/* Remover todas as animações de parágrafos */
+p, 
+.presente-preco,
+.presente-selecionado-nome,
+.presente-selecionado-preco {
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Manter apenas a animação do texto do carrinho-info */
+.carrinho-info {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease forwards !important;
+}
+
+.carrinho-info p {
+  opacity: 1 !important;
+  animation: fadeIn 0.3s ease forwards !important;
 } 

@@ -313,11 +313,12 @@ function Presentes() {
         </div>
 
         <div className="presentes-grid">
-          {presentes.map(presente => (
+          {presentes.map((presente, index) => (
             <div 
               key={presente.id} 
               className={`presente-card ${selectedPresentes.some(p => p.id === presente.id) ? 'selected' : ''}`}
               onClick={() => handleSelectPresente(presente)}
+              style={{"--card-index": index}}
             >
               <div className="presente-imagem">
                 <img 
