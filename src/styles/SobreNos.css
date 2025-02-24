@@ -1,92 +1,104 @@
 /* Container principal */
-.sobre-container {
-  width: 90%; /* Alterado para porcentagem */
-  max-width: 550px;
-  margin: 0 auto; /* Simplificado para auto */
-  padding: 1.5rem;
+.sobre-content {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 1rem 2rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding-bottom: 4rem; /* Espaço extra no final */
-  position: absolute; /* Mudado para absolute */
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%); /* Centraliza horizontalmente */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Container do conteúdo com background escuro */
-.sobre-content {
-  width: 100%;
+/* Container do texto */
+.sobre-container {
+  width: min(90%, 700px);
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box; /* Garantir que padding não afete largura */
+  padding: 2rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  box-sizing: border-box;
 }
 
-/* Texto com scroll invisível */
+.sobre-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Título */
+.sobre-content h1 {
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInSobre 1s ease forwards 0.3s;
+}
+
+/* Texto */
 .sobre-text {
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  max-height: calc(100vh - 300px); /* Reduzido para evitar corte */
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  text-align: justify; /* Alinhamento justificado */
-  padding-bottom: 2rem; /* Espaço extra no final do texto */
-}
-
-.sobre-text::-webkit-scrollbar {
-  display: none;
-}
-
-/* Ajuste para imagens */
-.sobre-image {
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: justify;
+  padding: 1.5rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-  .sobre-container {
-    width: 95%; /* Aumentado ligeiramente no mobile */
-    padding: 1rem;
-    padding-bottom: 3rem;
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .sobre-content {
+    padding-top: 70px;
   }
 
-  .sobre-content {
-    padding: 1rem;
+  .sobre-container {
+    padding: 1.5rem;
   }
 
   .sobre-text {
-    max-height: calc(100vh - 250px);
-    line-height: 1.5;
-    font-size: 0.95rem; /* Texto um pouco menor no mobile */
+    padding: 1.2rem;
+    padding-bottom: 1.5rem;
   }
 }
 
-.sobre-content h1 {
-  opacity: 0;
-  animation: fadeInSobre 1s ease forwards 0.3s;
-  margin-bottom: 2rem;
-  text-align: center;
+@media (max-width: 480px) {
+  .sobre-content {
+    padding: 70px 0.5rem 13rem 0.5rem;
+  }
+
+  .sobre-container {
+    width: 95%;
+    padding: 1rem;
+    max-height: calc(100vh - 90px);
+  }
+
+  .sobre-text {
+    padding: 1rem;
+    padding-bottom: 2rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(6px);
+  }
 }
 
 /* Ajuste para telas médias */
 @media (max-width: 768px) {
-  .sobre-container {
-    width: 95%;
-    padding: 1rem;
-  }
-
   .sobre-text {
     line-height: 1.6;
   }
@@ -100,4 +112,11 @@
   to {
     opacity: 1;
   }
+}
+
+/* Ajuste para imagens */
+.sobre-image {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 } 
