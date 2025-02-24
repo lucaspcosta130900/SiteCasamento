@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SobreNos from './pages/SobreNos';
 import Confirmacao from './pages/Confirmacao';
@@ -7,12 +7,13 @@ import Local from './pages/Local';
 import Presentes from './pages/Presentes';
 import StatusConfirmacoes from './pages/StatusConfirmacoes';
 import Navbar from './components/Navbar';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="app">
+        <div className="background-overlay"></div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -173,6 +173,9 @@ html, body {
   .confirmacao-content {
     padding: 0.8rem;
     padding-top: 70px;
+    padding-bottom: 1rem;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .confirmacao-form {
@@ -180,10 +183,29 @@ html, body {
     max-height: calc(100vh - 140px);
     width: calc(100% - 1.6rem);
     max-width: 520px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Container para o botão */
+  .submit-button-container {
+    margin-top: auto;
+    padding-top: 1rem;
+    position: sticky;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .submit-button {
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Ajuste na altura da lista de membros */
   .membros-lista {
-    max-height: 120px;
+    max-height: 30vh;
   }
 
   .form-group label {
@@ -217,11 +239,6 @@ html, body {
 
   .opcoes-confirmacao label {
     font-size: 0.8rem;
-  }
-
-  .submit-button {
-    margin-top: 1rem;
-    background-color: #808000;
   }
 
   .membros-grupo > label {
@@ -432,7 +449,7 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   border-color: #808000;
-  background: #808000;
+  background: #808000 !important;
 }
 
 input[type="radio"]:hover {
@@ -533,4 +550,20 @@ input[type="radio"]:checked {
 .submit-button:disabled {
   background: rgba(102, 102, 102, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ajuste na cor do select quando selecionado */
+.react-select__single-value {
+  color: rgba(255, 255, 255, 0.9) !important; /* Nome do convidado em branco */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste no placeholder do select */
+.react-select__placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Ajuste no texto do select */
+.react-select__input-container {
+  color: rgba(255, 255, 255, 0.9) !important;
 } 

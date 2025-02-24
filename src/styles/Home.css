@@ -246,13 +246,39 @@ p {
   }
 }
 
-.home-page .background-overlay::after {
-  content: '';
-  position: absolute;
+/* Remover qualquer estilo anterior do background-overlay */
+.background-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background-image: url('../assets/images/imagem-fundo-atenas.jpeg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+/* Camada de escurecimento geral */
+.background-darkener {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(1.5px);
+  z-index: -1;
+}
+
+/* Container da contagem regressiva */
+.countdown-container {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 } 

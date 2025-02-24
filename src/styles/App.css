@@ -1,0 +1,54 @@
+/* Estrutura base */
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Background e overlay */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/images/imagem-fundo-atenas.jpeg');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.background-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(1.5px);
+}
+
+/* Navegação e conteúdo */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Containers de conteúdo */
+.home-container,
+.sobre-container,
+.presentes-container,
+.confirmacao-container,
+.status-container,
+.local-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remover a div separada e usar pseudo-elemento */
+.background-darkener {
+  display: none;
+} 

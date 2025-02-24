@@ -18,7 +18,7 @@ const gruposFamiliares = {
 const encontrarGrupoFamiliar = (nome) => {
   return Object.entries(gruposFamiliares).find(([_, membros]) => 
     membros.includes(nome)
-  )?.[0];
+  );
 };
 
 // Lista de convidados com seus grupos
@@ -331,6 +331,22 @@ function Confirmacao() {
     }
   };
 
+  // Função para verificar se há outros membros no grupo além do selecionado
+  const temOutrosMembros = (nome) => {
+    if (!nome) return false;
+    
+    // Encontra o grupo do convidado selecionado
+    const convidadoSelecionado = convidadosDisponiveis.find(c => c.label === nome);
+    if (!convidadoSelecionado) return false;
+    
+    // Conta quantos membros tem no mesmo grupo
+    const membrosDoGrupo = convidadosDisponiveis.filter(
+      c => c.grupo === convidadoSelecionado.grupo
+    );
+    
+    return membrosDoGrupo.length > 1;
+  };
+
   return (
     <div className="page-container confirmacao-page">
       <div className="background-overlay"></div>
@@ -388,7 +404,8 @@ function Confirmacao() {
             </div>
           )}
 
-          {selectedGuest && confirmarPresenca !== null && (
+          {/* Mostrar a pergunta apenas se houver outros membros no grupo */}
+          {selectedGuest && confirmarPresenca === true && temOutrosMembros(selectedGuest.label) && (
             <div className="form-group">
               <label>Deseja confirmar a presença de outras pessoas do seu grupo familiar?</label>
               <div className="radio-group">
@@ -396,7 +413,6 @@ function Confirmacao() {
                   <input
                     type="radio"
                     name="confirmarGrupo"
-                    value="sim"
                     checked={confirmarGrupo === true}
                     onChange={() => setConfirmarGrupo(true)}
                   />
@@ -406,7 +422,6 @@ function Confirmacao() {
                   <input
                     type="radio"
                     name="confirmarGrupo"
-                    value="nao"
                     checked={confirmarGrupo === false}
                     onChange={() => setConfirmarGrupo(false)}
                   />
@@ -457,7 +472,7 @@ function Confirmacao() {
             disabled={
               !selectedGuest || 
               confirmarPresenca === null || 
-              (confirmarPresenca === true && confirmarGrupo === null) || 
+              (confirmarPresenca === true && temOutrosMembros(selectedGuest?.label) && confirmarGrupo === null) || 
               (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro]))
             }
           >
