@@ -367,7 +367,7 @@ function Confirmacao() {
                       setConfirmarGrupo(null);
                     }}
                   />
-                  Sim, confirmo minha presença
+                  Confirmo minha presença
                 </label>
                 <label>
                   <input
