@@ -4,6 +4,23 @@
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Título */
+.presentes-content h1 {
+  text-align: center;
+  width: 100%;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2rem 0;
+  padding: 0;
+  letter-spacing: 0.02em;
 }
 
 /* Esconde scrollbar para Chrome, Safari e Opera */
@@ -13,11 +30,9 @@
 
 .presentes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  width: calc(100% - 400px);
   padding: 1rem;
   padding-bottom: 8rem;
   box-sizing: border-box;
@@ -96,10 +111,10 @@
 
 .carrinho-flutuante {
   position: fixed;
-  right: 2rem;
-  top: 100px;
+  right: calc((100vw - 1800px) / 2 + 2rem);
+  top: 180px;
   width: 350px;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 200px);
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
@@ -273,7 +288,7 @@
 /* Desktop grande (1440px+) */
 @media (min-width: 1440px) {
   .presentes-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
   }
 
@@ -305,6 +320,11 @@
 
 /* Tablet e Mobile (até 767px) */
 @media (max-width: 767px) {
+  .presentes-grid {
+    width: 100%;
+    margin-right: 0;
+  }
+
   .presentes-content {
     padding: 1rem;
     padding-bottom: 450px;
@@ -417,6 +437,11 @@
   .btn-presentear {
     margin-top: 0.5rem;
     margin-bottom: 0.2rem;
+  }
+
+  .presentes-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -625,5 +650,12 @@
   .carrinho-flutuante {
     backdrop-filter: blur(6px);
     background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* Ajuste para quando a tela for menor que o max-width */
+@media (max-width: 1800px) {
+  .carrinho-flutuante {
+    right: 2rem;
   }
 } 
