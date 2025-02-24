@@ -111,13 +111,14 @@
     top: 100%;
     right: 1.5rem;
     width: 220px;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.98); /* Aumentada opacidade */
+    backdrop-filter: blur(15px); /* Aumentado blur */
     padding: 0.5rem 0;
     margin: 0;
     z-index: 1000;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra mais intensa */
   }
 
   .navbar ul.open {
@@ -136,10 +137,12 @@
     width: 100%;
     transition: all 0.3s ease;
     white-space: nowrap;
+    color: rgba(255, 255, 255, 0.95); /* Ajustado contraste */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Adicionado text-shadow */
   }
 
   .navbar ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05); /* Hover mais sutil */
   }
 
   /* Animação do hamburguer */
@@ -192,4 +195,44 @@
   .navbar ul li a {
     padding: 0.6rem 1.5rem;
   }
+}
+
+/* Menu mobile */
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.98); /* Aumentada ainda mais a opacidade */
+  backdrop-filter: blur(15px); /* Aumentado o blur */
+  padding: 1rem;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra mais intensa */
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+}
+
+/* Links do menu mobile */
+.mobile-menu a {
+  display: block;
+  padding: 1rem;
+  color: rgba(255, 255, 255, 0.95); /* Ajustado contraste do texto */
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Borda mais sutil */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Adicionado text-shadow */
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover {
+  background: rgba(255, 255, 255, 0.05); /* Efeito hover sutil */
 } 
