@@ -1,21 +1,44 @@
-.home-container {
-  align-items: center;
-  height: 100vh; /* Mudado de min-height para height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Adicionado para centralizar verticalmente */
-  padding-bottom: 120px; /* Espaço para o contador */
+/* Reset completo */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
 }
 
+/* Container principal */
+.home-container {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Conteúdo principal */
 .home-content {
-  margin-top: 0; /* Removido margin-top fixo */
   width: min(90%, 1200px);
-  padding: 0 1rem;
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Espaçamento mais controlado */
+  align-items: center;
+  gap: clamp(0.3rem, 2vh, 1rem);
+  padding: 0 1rem;
+  margin: 0;
+}
+
+/* Remover todas as margens que podem causar scroll */
+.names-container,
+.date-divider,
+h1,
+p {
+  margin: 0;
 }
 
 .names-container {
@@ -143,8 +166,12 @@ p {
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
+  .home-container {
+    padding-bottom: 100px;
+  }
+
   .home-content {
-    margin-top: 12vh;
+    gap: 0.8rem;
   }
 
   .couple-names {
@@ -166,26 +193,32 @@ p {
   }
 }
 
-/* Ajustes responsivos */
+/* Ajustes para telas pequenas */
 @media (max-height: 700px) {
   .home-container {
-    padding-bottom: 100px;
+    padding: 60px 0;
   }
 
   .home-content {
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .couple-names {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
   }
 
   h1 {
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    margin: 0;
   }
 
   p {
-    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    margin: 0;
+  }
+
+  .countdown-container {
+    padding: 1rem;
   }
 }
 
@@ -273,12 +306,16 @@ p {
 
 /* Container da contagem regressiva */
 .countdown-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 400px);
+  padding: 1.5rem;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
   z-index: 1;
 } 
