@@ -222,19 +222,21 @@ function Confirmacao() {
   useEffect(() => {
     if (confirmarGrupo === true && selectedGuest) {
       const grupoDoConvidado = selectedGuest.grupo;
-      // Filtra membros do grupo que ainda não confirmaram
+      // Filtra apenas membros disponíveis do mesmo grupo (excluindo o selecionado)
       const outrosConvidados = convidadosDisponiveis
         .filter(c => 
           c.grupo === grupoDoConvidado && 
-          c.value !== selectedGuest.value
+          c.label !== selectedGuest.label
         )
         .map(c => c.label);
       
       setMembrosFamilia(outrosConvidados);
-      setConfirmacoesGrupo({});
-    } else {
-      setMembrosFamilia([]);
-      setConfirmacoesGrupo({});
+      // Inicializa o estado das confirmações
+      const novasConfirmacoes = {};
+      outrosConvidados.forEach(membro => {
+        novasConfirmacoes[membro] = null;
+      });
+      setConfirmacoesGrupo(novasConfirmacoes);
     }
   }, [confirmarGrupo, selectedGuest]);
 
@@ -265,7 +267,10 @@ function Confirmacao() {
         return;
       }
 
-      if (confirmarPresenca === true && confirmarGrupo === null) {
+      // Só exige confirmação de grupo se houver outros membros disponíveis
+      if (confirmarPresenca === true && 
+          temOutrosMembros(selectedGuest.label) && 
+          confirmarGrupo === null) {
         setToast({
           message: 'Por favor, escolha se deseja confirmar outros membros do grupo.',
           type: 'error'
@@ -273,9 +278,11 @@ function Confirmacao() {
         return;
       }
 
-      if (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro])) {
+      if (confirmarGrupo && !membrosFamilia.every(membro => 
+        ['confirmar', 'nao-confirmar', 'confirmar-depois'].includes(confirmacoesGrupo[membro])
+      )) {
         setToast({
-          message: 'Por favor, confirme a presença de todos os membros do grupo.',
+          message: 'Por favor, selecione uma opção para todos os membros do grupo.',
           type: 'error'
         });
         return;
@@ -294,7 +301,7 @@ function Confirmacao() {
         });
       }
 
-      // Confirma os outros membros se necessário
+      // Confirma apenas os membros que tiveram resposta definida (exceto 'confirmar-depois')
       if (confirmarGrupo) {
         for (const membro of membrosFamilia) {
           if (confirmacoesGrupo[membro] === 'confirmar') {
@@ -302,12 +309,13 @@ function Confirmacao() {
               nome: membro,
               grupo: selectedGuest.grupo
             });
-          } else {
+          } else if (confirmacoesGrupo[membro] === 'nao-confirmar') {
             await adicionarNaoConfirmacao({
               nome: membro,
               grupo: selectedGuest.grupo
             });
           }
+          // Se for 'confirmar-depois', não faz nada com esse membro
         }
       }
 
@@ -331,7 +339,7 @@ function Confirmacao() {
     }
   };
 
-  // Função para verificar se há outros membros no grupo além do selecionado
+  // Função para verificar se há outros membros disponíveis no grupo além do selecionado
   const temOutrosMembros = (nome) => {
     if (!nome) return false;
     
@@ -339,12 +347,12 @@ function Confirmacao() {
     const convidadoSelecionado = convidadosDisponiveis.find(c => c.label === nome);
     if (!convidadoSelecionado) return false;
     
-    // Conta quantos membros tem no mesmo grupo
-    const membrosDoGrupo = convidadosDisponiveis.filter(
-      c => c.grupo === convidadoSelecionado.grupo
+    // Filtra membros disponíveis do mesmo grupo (excluindo o selecionado)
+    const membrosDisponiveisDoGrupo = convidadosDisponiveis.filter(
+      c => c.grupo === convidadoSelecionado.grupo && c.label !== nome
     );
     
-    return membrosDoGrupo.length > 1;
+    return membrosDisponiveisDoGrupo.length > 0;
   };
 
   return (
@@ -459,6 +467,16 @@ function Confirmacao() {
                         />
                         Não Confirmar
                       </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name={`confirmacao-${membro}`}
+                          value="confirmar-depois"
+                          checked={confirmacoesGrupo[membro] === 'confirmar-depois'}
+                          onChange={() => handleConfirmacaoMembro(membro, 'confirmar-depois')}
+                        />
+                        Confirmar Depois
+                      </label>
                     </div>
                   </div>
                 ))}
@@ -472,8 +490,12 @@ function Confirmacao() {
             disabled={
               !selectedGuest || 
               confirmarPresenca === null || 
-              (confirmarPresenca === true && temOutrosMembros(selectedGuest?.label) && confirmarGrupo === null) || 
-              (confirmarGrupo && !membrosFamilia.every(membro => confirmacoesGrupo[membro]))
+              (confirmarPresenca === true && 
+               temOutrosMembros(selectedGuest?.label) && 
+               confirmarGrupo === null) || 
+              (confirmarGrupo && !membrosFamilia.every(membro => 
+                ['confirmar', 'nao-confirmar', 'confirmar-depois'].includes(confirmacoesGrupo[membro])
+              ))
             }
           >
             Confirmar

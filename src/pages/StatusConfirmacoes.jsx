@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Pages.css';
 import '../styles/StatusConfirmacoes.css';
 import { confirmacoes, removerConfirmacao } from '../data/confirmacoes';
 import Toast from '../components/Toast';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../config/firebase';
 
 function StatusConfirmacoes() {
   const [toast, setToast] = useState(null);
   const [, forceUpdate] = useState({});
+  const [updateKey, setUpdateKey] = useState(0);
 
   const totalConfirmados = confirmacoes.confirmados.length;
   const totalNaoConfirmados = confirmacoes.naoConfirmados.length;
@@ -24,6 +27,15 @@ function StatusConfirmacoes() {
     acc[curr.grupo].push(curr);
     return acc;
   }, {});
+
+  useEffect(() => {
+    const confirmacoesRef = ref(db, 'confirmacoes');
+    const unsubscribe = onValue(confirmacoesRef, () => {
+      setUpdateKey(prev => prev + 1);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleDesfazer = async (nome, grupo, tipo) => {
     try {

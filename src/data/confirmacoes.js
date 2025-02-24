@@ -1,6 +1,9 @@
 import { ref, set, get, remove, onValue } from 'firebase/database';
 import { db } from '../config/firebase';
 
+// Objeto para armazenar os listeners
+let unsubscribe = null;
+
 export const confirmacoes = {
   // Confirmados
   confirmados: [],
@@ -10,22 +13,29 @@ export const confirmacoes = {
 };
 
 // Carregar confirmações do Firebase
-export const carregarConfirmacoes = async () => {
+export const carregarConfirmacoes = () => {
   const confirmacoesRef = ref(db, 'confirmacoes');
   
-  onValue(confirmacoesRef, (snapshot) => {
-    const dados = snapshot.val();
-    if (dados) {
-      confirmacoes.confirmados = dados.confirmados || [];
-      confirmacoes.naoConfirmados = dados.naoConfirmados || [];
-    }
+  // Remove listener anterior se existir
+  if (unsubscribe) {
+    unsubscribe();
+  }
+
+  // Adiciona novo listener
+  unsubscribe = onValue(confirmacoesRef, (snapshot) => {
+    const dados = snapshot.val() || { confirmados: [], naoConfirmados: [] };
+    confirmacoes.confirmados = dados.confirmados || [];
+    confirmacoes.naoConfirmados = dados.naoConfirmados || [];
   });
 };
 
 // Salvar confirmações no Firebase
 export const salvarConfirmacoes = async () => {
   const confirmacoesRef = ref(db, 'confirmacoes');
-  await set(confirmacoesRef, confirmacoes);
+  await set(confirmacoesRef, {
+    confirmados: confirmacoes.confirmados || [],
+    naoConfirmados: confirmacoes.naoConfirmados || []
+  });
 };
 
 // Carregar dados ao inicializar
@@ -37,7 +47,7 @@ export const adicionarConfirmacao = async (dados) => {
     data: new Date().toISOString().split('T')[0]
   };
   
-  confirmacoes.confirmados.push(novaConfirmacao);
+  confirmacoes.confirmados = [...(confirmacoes.confirmados || []), novaConfirmacao];
   await salvarConfirmacoes();
 };
 
@@ -47,12 +57,12 @@ export const adicionarNaoConfirmacao = async (dados) => {
     data: new Date().toISOString().split('T')[0]
   };
   
-  confirmacoes.naoConfirmados.push(novaNaoConfirmacao);
+  confirmacoes.naoConfirmados = [...(confirmacoes.naoConfirmados || []), novaNaoConfirmacao];
   await salvarConfirmacoes();
 };
 
 export const removerConfirmacao = async (nome) => {
-  confirmacoes.confirmados = confirmacoes.confirmados.filter(c => c.nome !== nome);
-  confirmacoes.naoConfirmados = confirmacoes.naoConfirmados.filter(c => c.nome !== nome);
+  confirmacoes.confirmados = (confirmacoes.confirmados || []).filter(c => c.nome !== nome);
+  confirmacoes.naoConfirmados = (confirmacoes.naoConfirmados || []).filter(c => c.nome !== nome);
   await salvarConfirmacoes();
 }; 
