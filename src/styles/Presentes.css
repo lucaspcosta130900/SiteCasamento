@@ -672,8 +672,8 @@
   }
 }
 
-/* Remover todas as animações de parágrafos */
-p, 
+/* Alterar a regra global para ser específica */
+.presentes-content p, 
 .presente-preco,
 .presente-selecionado-nome,
 .presente-selecionado-preco {
