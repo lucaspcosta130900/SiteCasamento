@@ -55,7 +55,7 @@ function Presentes() {
     {
       id: 3,
       nome: 'Contribuição para a aposentadoria dos noivos',
-      preco: 'R$ 399,99',
+      preco: 'R$ 499,99',
       imagem: aposentadoriaImg
     },
     {
