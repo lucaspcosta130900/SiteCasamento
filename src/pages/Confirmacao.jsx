@@ -132,7 +132,9 @@ const convidados = [
   { value: '107', label: 'Vitória Régia Dias de Paiva', grupo: 'Família Paiva Zé' },
   { value: '108', label: 'Vitória Filho 2', grupo: 'Família Costa Vitória' },
   { value: '109', label: 'Vitória', grupo: 'Família Costa Vitória' },
-  { value: '110', label: 'José Inácio Benício de Paiva', grupo: 'Família Paiva Zé' }
+  { value: '110', label: 'José Inácio Benício de Paiva', grupo: 'Família Paiva Zé' },
+  { value: '111', label: 'Giliard Ribeiro Cavalcante', grupo: 'Família LetsGo' },
+  { value: '112', label: 'Twany Vieira Bastos Cavalcante', grupo: 'Família LetsGo' }
 ].map(convidado => ({
   ...convidado,
   grupoFamiliar: encontrarGrupoFamiliar(convidado.label)
