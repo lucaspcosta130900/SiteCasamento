@@ -51,19 +51,21 @@ body:has(.confirmacao-page) {
   height: 100% !important;
 }
 
-/* Bloquear scroll em todas as páginas exceto Local */
-.page-container:not(.local-page) {
+/* Bloquear scroll em todas as páginas exceto Local e Trajes */
+.page-container:not(.local-page):not(.trajes-page) {
   height: 100vh;
   overflow: hidden;
 }
 
-/* Permitir scroll apenas na página Local no mobile */
-@media (max-width: 768px) {
-  .page-container.local-page {
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
-  }
+/* Permitir scroll nas páginas Local e Trajes */
+.page-container.local-page,
+.page-container.trajes-page {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  padding-bottom: 2rem;
 }
 
 .content {
@@ -277,4 +279,4 @@ p {
   .content {
     margin-top: 70px;
   }
-} 
+}

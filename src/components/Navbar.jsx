@@ -36,10 +36,11 @@ function Navbar() {
         <li><Link to="/sobre-nos" onClick={() => setIsMenuOpen(false)}>Sobre Nós</Link></li>
         <li><Link to="/confirmacao" onClick={() => setIsMenuOpen(false)}>Confirme sua Presença</Link></li>
         <li><Link to="/presentes" onClick={() => setIsMenuOpen(false)}>Lista de Presentes</Link></li>
+        <li><Link to="/trajes" onClick={() => setIsMenuOpen(false)}>Trajes</Link></li>
         <li><Link to="/local" onClick={() => setIsMenuOpen(false)}>Local do Evento</Link></li>
       </ul>
     </nav>
   );
 }
 
-export default Navbar; 
+export default Navbar;

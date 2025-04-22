@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -17,8 +18,11 @@ const app = initializeApp(firebaseConfig);
 // Obtém a referência do banco de dados
 export const db = getDatabase(app);
 
+// Obtém a referência do storage
+export const storage = getStorage(app);
+
 // Log para debug
 console.log('Firebase config:', {
   ...firebaseConfig,
   apiKey: '***' // não mostra a chave real
-}); 
+});
