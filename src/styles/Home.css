@@ -19,7 +19,7 @@ body, html {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 15vh 1rem 2rem 1rem;
+  padding: 15vh 1rem env(safe-area-inset-bottom, 2rem) 1rem;
   box-sizing: border-box;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -194,7 +194,7 @@ p {
 
 @media (max-width: 480px) {
   .home-container {
-    padding: 8vh 0.5rem 1rem 0.5rem;
+    padding: 8vh 0.5rem calc(env(safe-area-inset-bottom, 1rem) + 1rem) 0.5rem;
   }
 
   .couple-names {
@@ -214,7 +214,7 @@ p {
 /* Ajustes para telas pequenas */
 @media (max-height: 700px) {
   .home-container {
-    padding: 8vh 1rem 0.8rem 1rem;
+    padding: 8vh 1rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 1rem;
   }
 
   .home-content {
@@ -244,7 +244,7 @@ p {
 /* Ajuste para telas muito pequenas */
 @media (max-width: 360px) {
   .home-container {
-    padding: 6vh 0.5rem 0.8rem 0.5rem;
+    padding: 6vh 0.5rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 0.5rem;
   }
 
   .couple-names {
@@ -344,6 +344,7 @@ p {
   z-index: 1000;
   opacity: 1;
   margin-top: auto;
+  margin-bottom: env(safe-area-inset-bottom, 1rem);
 }
 
 @keyframes fadeInUp {
@@ -360,7 +361,7 @@ p {
 /* Ajustes específicos para iPhone */
 @supports (-webkit-touch-callout: none) {
   .home-container {
-    padding: 10vh 1rem 1rem 1rem;
+    padding: 10vh 1rem calc(env(safe-area-inset-bottom, 1rem) + 1rem) 1rem;
   }
 
   .home-content {
@@ -374,7 +375,7 @@ p {
 
   @media (max-height: 700px) {
     .home-container {
-      padding: 8vh 1rem 0.8rem 1rem;
+      padding: 8vh 1rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 1rem;
     }
 
     .home-content {
@@ -389,7 +390,7 @@ p {
 
   @media (max-height: 600px) {
     .home-container {
-      padding: 5vh 1rem 0.5rem 1rem;
+      padding: 5vh 1rem calc(env(safe-area-inset-bottom, 0.5rem) + 0.5rem) 1rem;
     }
 
     .countdown-container {

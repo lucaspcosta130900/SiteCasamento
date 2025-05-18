@@ -289,8 +289,8 @@ function Confirmacao() {
           message: 'Por favor, selecione uma opção para todos os membros do grupo.',
           type: 'error'
         });
-        return;
-      }
+      return;
+    }
 
       // Confirma o convidado principal
       if (confirmarPresenca) {
@@ -447,30 +447,30 @@ function Confirmacao() {
             <div className="form-group membros-grupo">
               <label>Confirme a presença dos membros do grupo:</label>
               <div className="membros-lista">
-                {membrosFamilia.map(membro => (
-                  <div key={membro} className="membro-confirmacao">
-                    <span className="nome-membro">{membro}</span>
-                    <div className="opcoes-confirmacao">
-                      <label>
-                        <input
-                          type="radio"
-                          name={`confirmacao-${membro}`}
-                          value="confirmar"
+              {membrosFamilia.map(membro => (
+                <div key={membro} className="membro-confirmacao">
+                  <span className="nome-membro">{membro}</span>
+                  <div className="opcoes-confirmacao">
+                    <label>
+                      <input
+                        type="radio"
+                        name={`confirmacao-${membro}`}
+                        value="confirmar"
                           checked={confirmacoesGrupo[membro] === 'confirmar'}
-                          onChange={() => handleConfirmacaoMembro(membro, 'confirmar')}
-                        />
-                        Confirmar
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name={`confirmacao-${membro}`}
-                          value="nao-confirmar"
+                        onChange={() => handleConfirmacaoMembro(membro, 'confirmar')}
+                      />
+                      Confirmar
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name={`confirmacao-${membro}`}
+                        value="nao-confirmar"
                           checked={confirmacoesGrupo[membro] === 'nao-confirmar'}
-                          onChange={() => handleConfirmacaoMembro(membro, 'nao-confirmar')}
-                        />
-                        Não Confirmar
-                      </label>
+                        onChange={() => handleConfirmacaoMembro(membro, 'nao-confirmar')}
+                      />
+                      Não Confirmar
+                    </label>
                       <label>
                         <input
                           type="radio"
@@ -484,7 +484,7 @@ function Confirmacao() {
                     </div>
                   </div>
                 ))}
-              </div>
+                </div>
             </div>
           )}
 
