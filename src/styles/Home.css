@@ -9,20 +9,17 @@ body, html {
 
 /* Container principal */
 .home-container {
-  height: 100vh;
-  height: -webkit-fill-available;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 15vh 1rem env(safe-area-inset-bottom, 2rem) 1rem;
+  padding: 15vh 1rem 120px 1rem;
   box-sizing: border-box;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Conteúdo principal */
@@ -36,7 +33,6 @@ body, html {
   gap: clamp(0.3rem, 2vh, 1rem);
   padding: 0;
   margin: 0;
-  padding-bottom: 120px; /* Espaço para o countdown */
 }
 
 /* Remover todas as margens que podem causar scroll */
@@ -194,7 +190,7 @@ p {
 
 @media (max-width: 480px) {
   .home-container {
-    padding: 8vh 0.5rem calc(env(safe-area-inset-bottom, 1rem) + 1rem) 0.5rem;
+    padding: 8vh 0.5rem 90px 0.5rem;
   }
 
   .couple-names {
@@ -204,6 +200,7 @@ p {
   .countdown-container {
     width: 95%;
     padding: 0.8rem;
+    bottom: 60px;
   }
 
   .countdown-container div {
@@ -214,7 +211,7 @@ p {
 /* Ajustes para telas pequenas */
 @media (max-height: 700px) {
   .home-container {
-    padding: 8vh 1rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 1rem;
+    padding: 8vh 1rem 90px 1rem;
   }
 
   .home-content {
@@ -236,15 +233,14 @@ p {
   }
 
   .countdown-container {
-    padding: 0.6rem;
-    margin-top: 0.8rem;
+    bottom: 60px;
   }
 }
 
 /* Ajuste para telas muito pequenas */
 @media (max-width: 360px) {
   .home-container {
-    padding: 6vh 0.5rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 0.5rem;
+    padding: 6vh 0.5rem 80px 0.5rem;
   }
 
   .couple-names {
@@ -261,6 +257,7 @@ p {
 
   .countdown-container {
     padding: 0.6rem;
+    bottom: 50px;
   }
 
   .countdown-container div {
@@ -332,7 +329,10 @@ p {
 
 /* Container da contagem regressiva */
 .countdown-container {
-  position: relative;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   width: min(90%, 455px);
   padding: 1rem;
   background: rgba(0, 0, 0, 0.85);
@@ -343,8 +343,6 @@ p {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   opacity: 1;
-  margin-top: auto;
-  margin-bottom: env(safe-area-inset-bottom, 1rem);
 }
 
 @keyframes fadeInUp {
@@ -361,41 +359,30 @@ p {
 /* Ajustes específicos para iPhone */
 @supports (-webkit-touch-callout: none) {
   .home-container {
-    padding: 10vh 1rem calc(env(safe-area-inset-bottom, 1rem) + 1rem) 1rem;
-  }
-
-  .home-content {
-    gap: 0.5rem;
+    padding: 10vh 1rem 100px 1rem;
   }
 
   .countdown-container {
-    padding: 0.8rem;
-    margin-top: 1rem;
+    bottom: 70px;
   }
 
   @media (max-height: 700px) {
     .home-container {
-      padding: 8vh 1rem calc(env(safe-area-inset-bottom, 0.8rem) + 0.8rem) 1rem;
-    }
-
-    .home-content {
-      gap: 0.3rem;
+      padding: 8vh 1rem 90px 1rem;
     }
 
     .countdown-container {
-      padding: 0.6rem;
-      margin-top: 0.8rem;
+      bottom: 60px;
     }
   }
 
   @media (max-height: 600px) {
     .home-container {
-      padding: 5vh 1rem calc(env(safe-area-inset-bottom, 0.5rem) + 0.5rem) 1rem;
+      padding: 5vh 1rem 80px 1rem;
     }
 
     .countdown-container {
-      padding: 0.5rem;
-      margin-top: 0.5rem;
+      bottom: 50px;
     }
   }
 } 
