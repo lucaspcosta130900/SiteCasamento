@@ -8,6 +8,7 @@
   align-items: center;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 /* Container do texto */
@@ -27,6 +28,9 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   box-sizing: border-box;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .sobre-container::-webkit-scrollbar {
@@ -68,6 +72,7 @@
 
   .sobre-container {
     padding: 1.5rem;
+    width: 95%;
   }
 
   .sobre-text {
@@ -120,4 +125,43 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes específicos para iPhone */
+@supports (-webkit-touch-callout: none) {
+  .sobre-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .sobre-container {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+/* Ajustes específicos para iPhone em modo paisagem */
+@media screen and (max-width: 926px) and (orientation: landscape) {
+  .sobre-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .sobre-container {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+/* Ajustes específicos para iPhone em modo retrato */
+@media screen and (max-width: 428px) and (orientation: portrait) {
+  .sobre-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .sobre-container {
+    width: 95%;
+    margin: 0 auto;
+  }
 } 
