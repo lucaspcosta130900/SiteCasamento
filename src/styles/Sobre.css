@@ -1,0 +1,68 @@
+/* Container principal */
+.sobre-container {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15vh 1rem 120px 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Conteúdo principal */
+.sobre-content {
+  width: min(90%, 1200px);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.3rem, 2vh, 1rem);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Container do texto */
+.text-container {
+  width: 100%;
+  max-width: min(90%, 800px);
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+  .sobre-container {
+    padding: 8vh 0.5rem 90px 0.5rem;
+  }
+
+  .text-container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 360px) {
+  .sobre-container {
+    padding: 6vh 0.5rem 80px 0.5rem;
+  }
+
+  .text-container {
+    width: 95%;
+    padding: 1.2rem;
+  }
+} 
