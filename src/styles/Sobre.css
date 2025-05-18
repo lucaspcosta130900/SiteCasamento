@@ -6,7 +6,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +31,7 @@
 
 /* Container do texto */
 .text-container {
-  width: 100%;
+  width: 90%;
   max-width: 800px;
   padding: 2rem;
   background: rgba(0, 0, 0, 0.85);
@@ -43,6 +42,9 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
   box-sizing: border-box;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 /* Ajustes para telas pequenas */
@@ -56,6 +58,7 @@
   }
 
   .text-container {
+    width: 85%;
     padding: 1.5rem;
   }
 }
@@ -71,6 +74,7 @@
   }
 
   .text-container {
+    width: 85%;
     padding: 1.2rem;
   }
 } 
