@@ -1,14 +1,18 @@
 .presentes-content {
   padding: 2rem 1rem;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
   max-width: 1800px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Título */
@@ -32,9 +36,9 @@
 
 .presentes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  width: calc(100% - 400px);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
   padding: 1rem;
   padding-bottom: 8rem;
   box-sizing: border-box;
@@ -116,13 +120,15 @@
 
 .carrinho-flutuante {
   position: fixed;
-  right: calc((100vw - 1800px) / 2 + 2rem);
+  right: 1rem;
   top: 180px;
-  width: 350px;
+  width: min(350px, calc(100% - 2rem));
   max-height: calc(100vh - 200px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1.5rem;
@@ -132,6 +138,7 @@
   flex-direction: column;
   opacity: 0;
   animation: slideInRight 0.5s ease forwards;
+  box-sizing: border-box;
 }
 
 .carrinho-info {
@@ -326,140 +333,38 @@
 /* Tablet grande e Desktop pequeno (768px - 1023px) */
 @media (max-width: 1023px) {
   .presentes-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 
   .carrinho-flutuante {
-    width: 300px;
-    right: 1rem;
+    position: fixed;
+    right: 0.5rem;
+    left: 0.5rem;
+    width: calc(100% - 1rem);
+    top: auto;
+    bottom: 1rem;
+    max-height: 50vh;
   }
 }
 
 /* Tablet e Mobile (até 767px) */
 @media (max-width: 767px) {
-  .presentes-grid {
-    width: 100%;
-    margin-right: 0;
-  }
-
   .presentes-content {
-    padding: 1rem;
-    padding-bottom: 450px;
-    margin: 0 auto;
-    max-width: 100%;
-    box-sizing: border-box;
+    padding: 1rem 0.5rem;
   }
 
   .presentes-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 0;
-    padding-bottom: 17rem;
-    width: 100%;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.8rem;
+    padding: 0.5rem;
   }
 
   .carrinho-flutuante {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: auto;
-    width: 100%;
-    max-height: 45vh;
-    border-radius: 12px 12px 0 0;
-    padding: 1rem;
-    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    margin: 0;
-  }
-
-  .presentes-selecionados {
-    max-height: 25vh;
-    overflow-y: auto;
-    margin: 0.5rem 0;
-    padding: 0.5rem 0;
-    padding-right: 8px;
-    margin-right: -0.2rem;
+    padding: 0.8rem;
   }
 
   .presente-selecionado-item {
-    display: flex;
-    align-items: center;
     padding: 0.4rem 0;
-    padding-right: 40px;
-    position: relative;
-    min-height: 40px;
-  }
-
-  .presente-selecionado-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    gap: 0.8rem;
-    min-width: 0;
-  }
-
-  .presente-selecionado-nome {
-    font-size: 0.85rem;
-    line-height: 1.2;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .presente-selecionado-preco {
-    font-size: 0.85rem;
-    min-width: 80px;
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .remover-presente {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 26px;
-    height: 26px;
-    padding: 0;
-    margin: 0;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    border-radius: 50%;
-    background: none;
-    border: 2px solid #ff4444;
-    color: #ff4444;
-  }
-
-  .remover-presente:hover {
-    transform: none;
-  }
-
-  .subtotal {
-    padding: 0.8rem 0;
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-  }
-
-  .btn-presentear {
-    margin-top: 0.5rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .presentes-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
   }
 }
 
@@ -526,16 +431,15 @@
 /* Ajustes para orientação paisagem em dispositivos móveis */
 @media (max-height: 500px) and (orientation: landscape) {
   .carrinho-flutuante {
-    position: fixed;
-    right: 1rem;
-    top: 80px;
-    width: 300px;
-    max-height: calc(100vh - 100px);
-    border-radius: 12px;
+    max-height: 80vh;
   }
 
   .presentes-content {
     padding-bottom: 2rem;
+  }
+
+  .presentes-selecionados {
+    max-height: 40vh;
   }
 }
 
@@ -694,4 +598,40 @@
 .carrinho-info p {
   opacity: 1 !important;
   animation: fadeIn 0.3s ease forwards !important;
+}
+
+/* Ajustes específicos para iPhone */
+@supports (-webkit-touch-callout: none) {
+  .presentes-content {
+    padding: 1rem;
+  }
+
+  .presentes-grid {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .carrinho-flutuante {
+    right: 0.5rem;
+    left: 0.5rem;
+    width: calc(100% - 1rem);
+    padding: 1rem;
+  }
+
+  .presente-card {
+    margin: 0;
+  }
+
+  .presente-imagem {
+    height: 200px;
+  }
+
+  .presente-info {
+    padding: 1rem;
+  }
+
+  .presente-info h3 {
+    font-size: 1rem;
+    min-height: 40px;
+  }
 } 
