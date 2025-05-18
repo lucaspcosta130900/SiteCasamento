@@ -117,13 +117,13 @@ function Trajes() {
             <h2>Observações</h2>
             <div className="trajes-info">
               <p>
-                Lembre-se que as cores e o estilo dos trajes foram escolhidos para complementar a decoração e o tema do casamento. Sua colaboração é fundamental para a harmonia visual deste dia tão especial.
+                - Lembre-se que as cores e o estilo dos trajes foram escolhidos para complementar a decoração e o tema do casamento. Sua colaboração é fundamental para a harmonia visual deste dia tão especial.
               </p>
               <p>
-                As cores acima deverão ser utilizadas somente por padrinhos e madrinhas. Aos demais convidados, sugerimos que escolham uma cor que se encaixe melhor com seu estilo pessoal, mantendo o traje esporte fino.
+                - As cores acima deverão ser utilizadas somente por padrinhos e madrinhas. Aos demais convidados, sugerimos que escolham uma cor que se encaixe melhor com seu estilo pessoal, mantendo o traje esporte fino.
               </p>
               <p>
-                Para qualquer dúvida adicional sobre os trajes, por favor, entre em contato diretamente com os noivos.
+                - Para qualquer dúvida adicional sobre os trajes, por favor, entre em contato diretamente com os noivos.
               </p>
             </div>
           </div>
