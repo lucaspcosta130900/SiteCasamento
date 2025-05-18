@@ -233,21 +233,50 @@
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
+  background: rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .traje-image {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
   object-fit: cover;
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .traje-image:hover {
   transform: scale(1.05);
+}
+
+/* Placeholder enquanto a imagem carrega */
+.traje-image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .traje-nota {
@@ -482,10 +511,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 2rem;
   }
 
   .traje-image-container {
     max-width: 250px;
     margin: 0;
+    aspect-ratio: 3/4;
+  }
+
+  .traje-image {
+    height: 100%;
+    width: 100%;
   }
 }

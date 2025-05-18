@@ -8,6 +8,7 @@ import ImageUpload from '../components/ImageUpload';
 function Trajes() {
   const [imageUrls, setImageUrls] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -20,10 +21,19 @@ function Trajes() {
           { key: 'image9', path: 'trajes/1745271370742_9.png' }
         ];
         
-        for (const file of imageFiles) {
-          urls[file.key] = await getImageUrl(file.path);
-        }
+        // Carregar imagens em paralelo
+        const imagePromises = imageFiles.map(async (file) => {
+          const url = await getImageUrl(file.path);
+          return { key: file.key, url };
+        });
+
+        const results = await Promise.all(imagePromises);
+        results.forEach(({ key, url }) => {
+          urls[key] = url;
+        });
+
         setImageUrls(urls);
+        setImagesLoaded(true);
       } catch (error) {
         console.error('Erro ao carregar imagens:', error);
       }
@@ -31,6 +41,10 @@ function Trajes() {
 
     loadImages();
   }, []);
+
+  const handleImageLoad = (e) => {
+    e.target.classList.add('loaded');
+  };
 
   return (
     <div className="page-container trajes-page">
@@ -50,11 +64,23 @@ function Trajes() {
               </div>
               <div className="trajes-images">
                 <div className="traje-image-container">
-                  <img src={imageUrls.image5 || "/images/5.png"} alt="Madrinhas com vestidos verde oliva" className="traje-image" />
+                  <img 
+                    src={imageUrls.image5 || "/images/5.png"} 
+                    alt="Madrinhas com vestidos verde oliva" 
+                    className="traje-image" 
+                    loading="lazy"
+                    onLoad={handleImageLoad}
+                  />
                   {isAdmin && <ImageUpload onUploadSuccess={(url) => setImageUrls(prev => ({ ...prev, image5: url }))} folder="trajes" />}
                 </div>
                 <div className="traje-image-container">
-                  <img src={imageUrls.image6 || "/images/6.png"} alt="Madrinhas com vestidos verde oliva" className="traje-image" />
+                  <img 
+                    src={imageUrls.image6 || "/images/6.png"} 
+                    alt="Madrinhas com vestidos verde oliva" 
+                    className="traje-image" 
+                    loading="lazy"
+                    onLoad={handleImageLoad}
+                  />
                   {isAdmin && <ImageUpload onUploadSuccess={(url) => setImageUrls(prev => ({ ...prev, image6: url }))} folder="trajes" />}
                 </div>
               </div>
@@ -77,11 +103,23 @@ function Trajes() {
               </div>
               <div className="trajes-images">
                 <div className="traje-image-container">
-                  <img src={imageUrls.image8 || "/images/8.png"} alt="Terno cinza claro" className="traje-image" />
+                  <img 
+                    src={imageUrls.image8 || "/images/8.png"} 
+                    alt="Terno cinza claro" 
+                    className="traje-image" 
+                    loading="lazy"
+                    onLoad={handleImageLoad}
+                  />
                   {isAdmin && <ImageUpload onUploadSuccess={(url) => setImageUrls(prev => ({ ...prev, image8: url }))} folder="trajes" />}
                 </div>
                 <div className="traje-image-container">
-                  <img src={imageUrls.image9 || "/images/9.png"} alt="Gravata verde oliva" className="traje-image" />
+                  <img 
+                    src={imageUrls.image9 || "/images/9.png"} 
+                    alt="Gravata verde oliva" 
+                    className="traje-image" 
+                    loading="lazy"
+                    onLoad={handleImageLoad}
+                  />
                   {isAdmin && <ImageUpload onUploadSuccess={(url) => setImageUrls(prev => ({ ...prev, image9: url }))} folder="trajes" />}
                 </div>
               </div>
