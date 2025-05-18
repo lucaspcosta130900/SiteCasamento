@@ -200,7 +200,7 @@ p {
   .countdown-container {
     width: 95%;
     padding: 0.8rem;
-    bottom: 60px;
+    bottom: 80px;
   }
 
   .countdown-container div {
@@ -233,7 +233,7 @@ p {
   }
 
   .countdown-container {
-    bottom: 60px;
+    bottom: 80px;
   }
 }
 
@@ -257,7 +257,7 @@ p {
 
   .countdown-container {
     padding: 0.6rem;
-    bottom: 50px;
+    bottom: 70px;
   }
 
   .countdown-container div {
@@ -330,7 +330,7 @@ p {
 /* Container da contagem regressiva */
 .countdown-container {
   position: fixed;
-  bottom: 80px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   width: min(90%, 455px);
@@ -363,7 +363,7 @@ p {
   }
 
   .countdown-container {
-    bottom: 70px;
+    bottom: 90px;
   }
 
   @media (max-height: 700px) {
@@ -372,7 +372,7 @@ p {
     }
 
     .countdown-container {
-      bottom: 60px;
+      bottom: 80px;
     }
   }
 
@@ -382,7 +382,7 @@ p {
     }
 
     .countdown-container {
-      bottom: 50px;
+      bottom: 70px;
     }
   }
 } 
