@@ -31,6 +31,7 @@ import drinkNoivaImg from '../assets/images/drink-noiva-nervosa.jpg';
 import solImg from '../assets/images/sol-casamento.jpg';
 import culinariaImg from '../assets/images/curso-culinaria-noiva.jpg';
 import spaImg from '../assets/images/spa-noivo-conta.jpg';
+import pixImg from '../assets/images/pix-personalizado.jpg';
 
 // Inicializa o Mercado Pago com sua public key
 initMercadoPago('APP_USR-a7a1bf1a-c7eb-40df-9d70-1fd1da3fdb9c');
@@ -40,161 +41,162 @@ function Presentes() {
   const [loading, setLoading] = useState(false);
 
   const presentes = [
+    
     {
       id: 1,
-      nome: '1 ano de academia para os noivos se recuperarem da lua de mel',
-      preco: 'R$ 1.263,25',
-      imagem: academiaImg
-    },
-    {
-      id: 2,
-      nome: 'Almoço no primeiro mês de casamento',
-      preco: 'R$ 315,48',
+      nome: 'Almoços no primeiro mês de casamento',
+      preco: 'R$ 532,15',
       imagem: almocoImg
     },
     {
-      id: 3,
-      nome: 'Contribuição para a aposentadoria dos noivos',
-      preco: 'R$ 499,99',
-      imagem: aposentadoriaImg
-    },
-    {
-      id: 4,
+      id: 2,
       nome: 'Café da manhã pós noite de núpcias',
-      preco: 'R$ 532,15',
+      preco: 'R$ 325,48',
       imagem: cafeImg
     },
     {
-      id: 5,
+      id: 3,
+      nome: 'Vinhos da lua de mel',
+      preco: 'R$ 372,76',
+      imagem: drinksImg
+    },
+    {
+      id: 4,
       nome: 'Churras para noivo e padrinhos',
-      preco: 'R$ 446,56',
+      preco: 'R$ 276,56',
       imagem: churrasImg
     },
     {
-      id: 6,
+      id: 5,
       nome: 'Primeiro mês de casamento com comida japonesa',
-      preco: 'R$ 351,63',
+      preco: 'R$ 213,63',
       imagem: japonesaImg
     },
     {
-      id: 7,
+      id: 6,
       nome: 'Cortador de unha para o noivo',
-      preco: 'R$ 259,71',
+      preco: 'R$ 179,71',
       imagem: cortadorImg
     },
     {
-      id: 8,
+      id: 7,
       nome: 'Curso de pizzaiolo do noivo para não precisarmos mais pedir pizza',
       preco: 'R$ 645,89',
       imagem: pizzaioloImg
     },
     {
-      id: 9,
-      nome: 'Drinks da lua de mel',
-      preco: 'R$ 362,76',
-      imagem: drinksImg
-    },
-    {
-      id: 10,
+      id: 8,
       nome: 'Ataques ao frigobar do hotel liberados para os noivos',
       preco: 'R$ 444,38',
       imagem: frigobarImg
     },
     {
-      id: 11,
+      id: 9,
       nome: 'Jantar romântico na lua de mel',
       preco: 'R$ 576,79',
       imagem: jantarImg
     },
     {
-      id: 12,
+      id: 10,
       nome: 'Kit utensílios de limpeza para a casa nova',
-      preco: 'R$ 273,12',
+      preco: 'R$ 373,12',
       imagem: limpezaImg
     },
     {
-      id: 13,
+      id: 11,
       nome: 'Kit poker para as noites de jogatina com os amigos',
-      preco: 'R$ 214,57',
+      preco: 'R$ 134,57',
       imagem: pokerImg
     },
     {
-      id: 14,
+      id: 12,
       nome: 'Equipamento de proteção para a noiva sobreviver aos vazamentos de gás do noivo',
       preco: 'R$ 497,16',
       imagem: mascaraImg
     },
     {
-      id: 15,
+      id: 13,
       nome: 'Massagem de casal para relaxar após o casamento',
       preco: 'R$ 439,38',
       imagem: massagemImg
     },
     {
-      id: 16,
+      id: 14,
       nome: 'Garantindo upgrade de quarto com banheira para a noite de núpcias',
       preco: 'R$ 399,90',
       imagem: banheiraImg
     },
     {
-      id: 17,
+      id: 15,
       nome: 'Noite de núpcias',
       preco: 'R$ 315,41',
       imagem: nupciasImg
     },
     {
-      id: 18,
+      id: 16,
       nome: 'Para não dizer que não dei nada',
-      preco: 'R$ 169,69',
+      preco: 'R$ 99,90',
       imagem: nadaImg
     },
     {
-      id: 19,
+      id: 17,
       nome: 'Primeira viagem casados',
-      preco: 'R$ 1.329,54',
+      preco: 'R$ 2.329,54',
       imagem: viagemImg
     },
     {
-      id: 20,
+      id: 18,
       nome: 'Deus te iluminou para agraciar esse casal com',
       preco: 'R$ 5228,33',
       imagem: providenciaImg
     },
     {
-      id: 21,
-      nome: 'Para curtir a lua de mel com os noivos',
-      preco: 'R$ 68.457,29',
-      imagem: quartoImg
-    },
-    {
-      id: 22,
+      id: 19,
       nome: 'Para a noiva não descontar no noivo quando ele esquecer a toalha em cima da cama',
       preco: 'R$ 247,28',
       imagem: sacoBoxeImg
     },
     {
-      id: 23,
+      id: 20,
       nome: 'Drinks para diminuir o nervosismo da noiva',
-      preco: 'R$ 386,85',
+      preco: 'R$ 396,85',
       imagem: drinkNoivaImg
     },
     {
-      id: 24,
+      id: 21,
       nome: 'Garantindo que no dia do casamento não vai chover',
       preco: 'R$ 312,87',
       imagem: solImg
     },
     {
-      id: 25,
+      id: 22,
       nome: 'Curso de culinária básica para a noiva',
       preco: 'R$ 409,51',
       imagem: culinariaImg
     },
     {
-      id: 26,
+      id: 23,
+      nome: '1 ano de academia para os noivos se recuperarem da lua de mel',
+      preco: 'R$ 1.263,25',
+      imagem: academiaImg
+    },
+    {
+      id: 24,
       nome: 'Dia de Spa para o noivo após ver a conta do casamento',
       preco: 'R$ 553,97',
       imagem: spaImg
+    },
+    {
+      id: 25,
+      nome: 'Viajar para a lua de mel com os noivos 🤣👀',
+      preco: 'R$ 68.457,29',
+      imagem: quartoImg
+    },
+    {
+      id: 26,
+      nome: 'Se preferir, pode me enviar um pix com o valor do presente chave:(71) 99910-1150',
+      preco: 'R$ 0,00',
+      imagem: pixImg
     }
   ];
 
