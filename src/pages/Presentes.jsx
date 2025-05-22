@@ -7,13 +7,12 @@ import { createPayment } from '../services/api';
 // Importar todas as imagens
 import academiaImg from '../assets/images/academia-pos-lua-de-mel.jpg';
 import almocoImg from '../assets/images/almoco-primeiro-mes.jpg';
-import aposentadoriaImg from '../assets/images/aposentadoria-noivos.jpg';
 import cafeImg from '../assets/images/cafe-hotel.jpg';
 import churrasImg from '../assets/images/churras-noivo.jpg';
 import japonesaImg from '../assets/images/comida-japonesa.jpg';
 import cortadorImg from '../assets/images/cortador-unha-noivo.jpg';
 import pizzaioloImg from '../assets/images/curso-pizzaiolo-noivo.jpg';
-import drinksImg from '../assets/images/drinks-lua-de-mel.jpg';
+import vinhosImg from '../assets/images/vinhos-lua-de-mel.jpg';
 import frigobarImg from '../assets/images/frigobar-hotel.jpg';
 import jantarImg from '../assets/images/jantar-romantico.jpg';
 import limpezaImg from '../assets/images/kit-limpeza.jpg';
@@ -58,7 +57,7 @@ function Presentes() {
       id: 3,
       nome: 'Vinhos da lua de mel',
       preco: 'R$ 372,76',
-      imagem: drinksImg
+      imagem: vinhosImg
     },
     {
       id: 4,
@@ -194,7 +193,7 @@ function Presentes() {
     },
     {
       id: 26,
-      nome: 'Se preferir, pode me enviar um pix com o valor do presente chave:(71) 99910-1150',
+      nome: 'Se preferir, seu presente pode ser personalizado! Pix:(71) 99910-1150',
       preco: 'R$ 0,00',
       imagem: pixImg
     }
