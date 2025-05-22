@@ -37,7 +37,7 @@ const convidados = [
   { value: '16', label: 'Bruna Azevedo Boccanera', grupo: 'Família B' },
   { value: '43', label: 'Gabriel Boccanera', grupo: 'Família B' },
   { value: '28', label: 'Daniel Lédo', grupo: 'Família BB' },
-  { value: '38', label: 'Felipe Costa', grupo: 'Família BB' },
+  { value: '38', label: 'Felipe Campos', grupo: 'Família BB' },
   { value: '101', label: 'Roberta Lédo', grupo: 'Família BB' },
   { value: '7', label: 'Amanda Bispo', grupo: 'Família C' },
   { value: '32', label: 'Eduarda Short', grupo: 'Família C' },
