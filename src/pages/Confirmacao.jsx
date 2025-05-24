@@ -142,7 +142,8 @@ const convidados = [
   { value: '78', label: 'Lina Bandeira', grupo: 'Família Z' },
   { value: '92', label: 'Nicinha Costa', grupo: 'Família Z' },
   { value: '108', label: 'Simone Vieira da Costa', grupo: 'Família Z' },
-  { value: '120', label: 'Junia Bicalho', grupo: 'Família RR' }
+  { value: '120', label: 'Junia Bicalho', grupo: 'Família RR' },
+  { value: '121', label: 'Victória Matos', grupo: 'Família D'}
 ].map(convidado => ({
   ...convidado,
   grupoFamiliar: encontrarGrupoFamiliar(convidado.label)
